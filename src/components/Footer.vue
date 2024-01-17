@@ -19,8 +19,8 @@ export default{
 
     <!-- PRIVACY -->
 
-    <div class="privacy-footer col-12 col-sm-4 mb-3 mb-sm-0">
-      <ul class="d-flex flex-row list-unstyled m-0 justify-content-center">
+    <div class="privacy-footer col-12 col-sm-4 mb-3 mb-sm-0 d-flex align-items-center ">
+      <ul class="d-flex flex-row list-unstyled m-0 justify-content-center ">
         <li>
           <a href="#">Privacy</a>
         </li>
@@ -32,8 +32,8 @@ export default{
 
     <!-- MENU FOOTER -->
 
-    <div class="menu-footer col-12 col-sm-4">
-      <ul class="d-flex flex-row list-unstyled m-0 justify-content-center">
+    <div class="menu-footer col-12 col-sm-4 d-flex align-items-center ">
+      <ul class="d-flex flex-row list-unstyled m-0 justify-content-center ">
         <li>
           <a href="#">Link</a>
         </li>
