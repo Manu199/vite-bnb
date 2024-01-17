@@ -1,11 +1,33 @@
 <script>
 
 import Card_apartment from './Card_apartment.vue';
+import axios from 'axios';
+import { store } from '../../data/store';
 
 export default{
   name:'Lista_apartment',
   components:{
     Card_apartment,
+    data() {
+      return {
+
+      }
+    },
+    methods: {
+      getApi(endpoint) {
+        axios.get(endpoint)
+        .then(res => {
+          store.apartmentsList = res.data;
+          console.log(store.apartmentsList);
+        })
+        .catch(e=> {
+          console.log(e);
+        });
+      }
+    },
+    mounted() {
+      this.getApi(store.apiUrl + 'apartments');
+    },
   }
  
 }
