@@ -1,5 +1,5 @@
 <script>
-import Navbar from "./partials/navbar.vue";
+import Navbar from "./partials/Navbar.vue";
 import Jumbotron from "./partials/Jumbotron.vue";
 
 export default {
@@ -12,8 +12,8 @@ export default {
 </script>
 
 <template>
-  <Navbar></Navbar>
-  <Jumbotron></Jumbotron>
+  <Navbar />
+  <Jumbotron />
 </template>
 
 <style lang="scss" scoped>

@@ -1,12 +1,12 @@
 <script>
-import Card_apartment from "./Card_apartment.vue";
+import CardApartment from "./CardApartment.vue";
 import axios from "axios";
 import { store } from "../../data/store";
 
 export default {
-  name: "Lista_apartment",
+  name: "ListApartment",
   components: {
-    Card_apartment,
+    CardApartment,
     data() {
       return {};
     },
@@ -37,10 +37,10 @@ export default {
     </div>
 
     <div class="row justify-content-start">
-      <Card_apartment></Card_apartment>
-      <Card_apartment></Card_apartment>
-      <Card_apartment></Card_apartment>
-      <Card_apartment></Card_apartment>
+      <CardApartment />
+      <CardApartment />
+      <CardApartment />
+      <CardApartment />
     </div>
   </section>
 </template>
