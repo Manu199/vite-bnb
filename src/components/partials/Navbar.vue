@@ -11,7 +11,7 @@ export default{
 
     <div class="logo-navbar">
 
-      LOGO
+      <img src="../../../public/logo (1).png" alt="">
 
     </div>
 
@@ -47,6 +47,14 @@ export default{
 </template>
 
 <style lang="scss" scoped>
+
+.logo-navbar{
+  img{
+    width: 120px;
+
+  }
+ 
+}
 
 .navbar{
   height: 56px;

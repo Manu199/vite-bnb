@@ -8,8 +8,8 @@ export default{
 
 <template>
 
-  <div class="card col-3 border-0 my-3 ">
-    <div class="card p-3 bg-warning ">
+  <div class="card col-lg-3 col-md-6 col-sm-6 border-0 my-3 ">
+    <div class="card p-3 bg-light  ">
       <img src="" class="card-img-top rounded rounded-4" alt="Appartamento">
       <div class="card-body">
         <h6 class="card-title single-line-ellipsis fw-bold">Ciao</h6>
