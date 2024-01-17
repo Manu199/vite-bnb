@@ -7,51 +7,73 @@ export default{
 </script>
 
 <template>
-  
-    <div class="container">
-      <div class="left">
-        <h3>Boolando S.r.l</h3>
-        <span><a href="#">Ciao</a></span>
-      </div>
-      <div class="right">
-        <h3>Trovaci anche su</h3>
-        <div class="social">
-          <ul>
-            <li>
-            <span><a href="#">Ciao</a></span>
-            </li>
-          </ul>
-        </div>
-      </div>
+
+<div class="container">
+  <div class="content-footer d-flex flex-column flex-sm-row justify-content-between row">
+
+    <!-- LOGO -->
+
+    <div class="logo-footer d-flex justify-content-center  col-12 col-sm-4 mb-3 mb-sm-0">
+      <img class="logo img-fluid" src="../../public/logo (1).png" alt="">
     </div>
+
+    <!-- PRIVACY -->
+
+    <div class="privacy-footer col-12 col-sm-4 mb-3 mb-sm-0 d-flex align-items-center ">
+      <ul class="d-flex flex-row list-unstyled m-0 justify-content-center ">
+        <li>
+          <a href="#">Privacy</a>
+        </li>
+        <li>
+          <a href="#">Condizioni</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- MENU FOOTER -->
+
+    <div class="menu-footer col-12 col-sm-4 d-flex align-items-center ">
+      <ul class="d-flex flex-row list-unstyled m-0 justify-content-center ">
+        <li>
+          <a href="#">Link</a>
+        </li>
+        <li>
+          <a href="#">Link</a>
+        </li>
+        <li>
+          <a href="#">Link</a>
+        </li>
+        <li>
+          <a href="#">Link</a>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+  
+      
 </template>
 <style lang="scss" scoped>
 @use '../scss/main.scss' as *;
 
-footer {
-  background-color: $text_grey;
-  padding: 15px 0;
+
+// LOGO
+.logo-footer{
+  img{
+    width: 120px;
+  }
 }
-.container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.left,
-.right {
-  margin: 0;
-}
-.social ul {
-  display: flex;
-}
-.social ul li{
-  margin: 5px;
-  color: white;
-}
-span a {
-  color: $text_grey;
-  text-decoration: none;
-  margin-right: 5px;
-  font-size: .7rem;
+
+ul{
+  li{
+    margin-left: 10px;
+
+    a{
+      text-decoration: none;
+      color: $text_grey;
+    }
+  }
 }
 </style>
