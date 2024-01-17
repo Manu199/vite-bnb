@@ -14,7 +14,7 @@ export default{
               <div class="col-2">
                   <ul class="nav">
                       <li class="nav-item">
-                          <a class="nav-link btn fw-bold btn-header" href="#">
+                          <a class="nav-link btn fw-bold" href="#">
                               <img class="logo-header" src="/logo (1).png" alt="logo (1).png">
                           </a>
                       </li>
@@ -36,11 +36,8 @@ export default{
                           <i class="fa-regular fa-user"></i>
                       </a>
                       <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                          <a class="dropdown-item" href="#">Login</a>
-                          <a class="dropdown-item" href="#"
-                              onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                            Registrazione
-                          </a>
+                          <a class="dropdown-item" href="http://127.0.0.1:8000/login">Login</a>
+                          <a class="dropdown-item" href="http://127.0.0.1:8000/register">Registrazione</a>
                           <form id="logout-form" action="#" method="POST" class="d-none">
                               @csrf
                           </form>
