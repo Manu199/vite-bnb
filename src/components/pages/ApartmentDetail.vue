@@ -6,7 +6,7 @@ export default {
 </script>
 
 <template>
-  <div class="dettaglio">
+  
     <div class="container">
       <h1 class="text-danger">Titolo dell'apartamento</h1>
       <h2>Disponibile</h2>
@@ -61,15 +61,11 @@ export default {
 
 
     </div>
-  </div>
+  
   
 </template>
 
 <style lang="scss" scoped>
 
-.dettaglio{
-  width: 100%;
-  height: 100vh;
-  background-color: white;
-}
+
 </style>

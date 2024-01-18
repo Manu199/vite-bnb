@@ -12,8 +12,7 @@ export default {
 
 <template>
   <Jumbotron></Jumbotron>
-
-    <ListaApartment></ListaApartment>
+  <ListaApartment></ListaApartment>
  
 </template>
 
