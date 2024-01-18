@@ -12,7 +12,7 @@ export default {
       <h2>Disponibile</h2>
 
       <div class="container-fluid d-flex img-container">
-        <img src="/public/luxfeat.jpeg" alt="" class="object-fit-cover border rounded">
+        <img  src="/public/luxfeat.jpeg" alt="" class="object-fit-cover border rounded w-100">
       </div>
 
       <div class="container-fluid info-apartment row">
