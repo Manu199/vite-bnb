@@ -74,7 +74,7 @@ export default {
 }
 
 .navBar {
-  width: 100vw;
+  width: 100%;
 }
 .btn-header {
   background-color: transparent;
