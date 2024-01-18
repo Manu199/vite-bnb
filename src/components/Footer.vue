@@ -11,16 +11,14 @@ export default {
     >
       <!-- LOGO -->
 
-      <div
-        class="logo-footer d-flex justify-content-center col-12 col-sm-4 mb-3 mb-sm-0"
-      >
+      <div class="logo-footer d-flex justify-content-start col-12 col-sm-4 mb-3 mb-sm-0">
         <img class="logo img-fluid" src="../../public/logo (1).png" alt="" />
       </div>
 
       <!-- PRIVACY -->
 
       <div
-        class="privacy-footer col-12 col-sm-4 mb-3 mb-sm-0 d-flex align-items-center"
+        class="privacy-footer col-12 col-sm-4 mb-3 mb-sm-0 d-flex justify-content-center align-items-center"
       >
         <ul class="d-flex flex-row list-unstyled m-0 justify-content-center">
           <li>
@@ -34,7 +32,7 @@ export default {
 
       <!-- MENU FOOTER -->
 
-      <div class="menu-footer col-12 col-sm-4 d-flex align-items-center">
+      <div class="menu-footer col-12 col-sm-4 d-flex align-items-center justify-content-end">
         <ul class="d-flex flex-row list-unstyled m-0 justify-content-center">
           <li>
             <a href="#">Link</a>
