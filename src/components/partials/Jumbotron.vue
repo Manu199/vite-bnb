@@ -18,15 +18,14 @@ export default {
     autocomplete(){
       console.log('autocomplete ON');
       if(this.inputSearch.length > 1){
-        const apiUrl = 'https://api.tomtom.com/search/2/geocode/';
-        const apiQuery = this.inputSearch + '.json';
-        const encodedAddress = encodeURIComponent(apiQuery);
-        const apiKey = '?limit=5&key=JFycdOFju9JHTRcWGALUGaqq5FULPTe8';
-  
-        const endpoint = apiUrl + encodedAddress + apiKey;
-  
         // Imposta un timer per ritardare la chiamata di 300ms
         this.timeoutId = setTimeout(() => {
+          const apiUrl = 'https://api.tomtom.com/search/2/geocode/';
+          const apiQuery = this.inputSearch + '.json';
+          const encodedAddress = encodeURIComponent(apiQuery);
+          const apiKey = '?limit=5&key=JFycdOFju9JHTRcWGALUGaqq5FULPTe8';
+    
+          const endpoint = apiUrl + encodedAddress + apiKey;
             // Fai la chiamata solo dopo che il timer è scaduto
             axios.get(endpoint)
                 .then(response => {
@@ -67,7 +66,7 @@ export default {
           Trova l'appartamento dei tuoi sogni
         </h2>
         <div class="d-flex" role="search">
-          <input v-model="inputSearch" @keypress="autocomplete" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+          <input v-model="inputSearch" @keydown="autocomplete" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
           <button class="btn btn-success" @click="toSearch">Search</button>
         </div>
         <ul>
