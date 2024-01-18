@@ -5,30 +5,55 @@ import axios from "axios";
 export default {
   name: "Jumbotron",
   data() {
-    return {};
+    return {
+      store,
+      inputSearch: '',
+      timeoutId: null,
+      arraySuggest: [],
+      position: {}
+    };
   },
-
   methods: {
-    searchApartmentApi(endpoint) {
-      axios
-        .get(endpoint, {
-          params: {
-            lat: 41.89056,
-            lon: 12.49427,
-            radius: 20,
-          },
-        })
-        .then((res) => {
-          store.searchListApartments = res.data;
-          console.log(store.searchListApartments);
-        })
-        .catch((e) => {
-          console.log(e);
-        });
+
+    autocomplete(){
+      console.log('autocomplete ON');
+      if(this.inputSearch.length > 1){
+        const apiUrl = 'https://api.tomtom.com/search/2/geocode/';
+        const apiQuery = this.inputSearch + '.json';
+        const encodedAddress = encodeURIComponent(apiQuery);
+        const apiKey = '?limit=5&key=JFycdOFju9JHTRcWGALUGaqq5FULPTe8';
+  
+        const endpoint = apiUrl + encodedAddress + apiKey;
+  
+        // Imposta un timer per ritardare la chiamata di 300ms
+        this.timeoutId = setTimeout(() => {
+            // Fai la chiamata solo dopo che il timer è scaduto
+            axios.get(endpoint)
+                .then(response => {
+                  this.arraySuggest = response.data.results;
+                  console.log(this.arraySuggest);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        }, 300);
+      }
     },
+
+    toSearch(){
+      console.log('start search');
+      console.log(this.position);
+      axios.get(`http://127.0.0.1:8000/api/searchapartment?lat=${this.position.lat}&lon=${this.position.lon}&radius=1000`)
+        .then(response => {
+          store.searchListApartments = response.data.data;
+        })
+        .catch(error => {
+            console.error(error);
+        });
+    }
+
   },
   mounted() {
-    this.searchApartmentApi(store.apiUrl + "searchapartment");
   },
 };
 </script>
@@ -41,10 +66,13 @@ export default {
         <h2 class="text-center mb-3 text-white z-3">
           Trova l'appartamento dei tuoi sogni
         </h2>
-        <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-          <button class="btn btn-success" type="submit">Search</button>
-        </form>
+        <div class="d-flex" role="search">
+          <input v-model="inputSearch" @keypress="autocomplete" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+          <button class="btn btn-success" @click="toSearch">Search</button>
+        </div>
+        <ul>
+          <li @click="inputSearch = address.address.freeformAddress, position = address.position" class="bg-info" v-for="address,index in arraySuggest" :key="index">{{ address.address.freeformAddress }}</li>
+        </ul>
       </div>
     </div>
   </div>

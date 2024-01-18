@@ -7,41 +7,50 @@ export default {
   name: "ListApartment",
   components: {
     CardApartment,
-    data() {
-      return {};
-    },
-    methods: {
-      getApi(endpoint) {
-        axios
-          .get(endpoint)
-          .then((res) => {
-            store.apartmentsList = res.data;
-            console.log(store.apartmentsList);
-          })
-          .catch((e) => {
-            console.log(e);
-          });
-      },
-    },
-    mounted() {
-      this.getApi(store.apiUrl + "apartments");
+  },
+  data() {
+    return {
+      store,
+    };
+  },
+  methods: {
+    getApi(endpoint) {
+      console.log(endpoint);
+      axios
+        .get(endpoint)
+        .then((res) => {
+          store.apartmentsList = res.data.data;
+          console.log(store.apartmentsList);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     },
   },
+  mounted() {
+    this.getApi(store.apiUrl + "apartments");
+  },
+  
 };
 </script>
 
 <template>
   <section class="lista_apartment py-4 d-flex flex-column">
-    <div class="d-flex ms-2">
+    
+    <div v-if="store.searchListApartments.length == 0">
       <h4>Lista appartamenti</h4>
+      <div class="row justify-content-start">
+        <CardApartment v-for="apartment,index in store.apartmentsList" :key="index" :apartment="apartment" />
+      </div>
+    </div>
+    <div v-else>
+      <h4>Ricerca</h4>
+      <div class="row justify-content-start">
+        <CardApartment v-for="apartment,index in store.searchListApartments" :key="index" :apartment="apartment" />
+      </div>
     </div>
 
-    <div class="row justify-content-start">
-      <CardApartment />
-      <CardApartment />
-      <CardApartment />
-      <CardApartment />
-    </div>
+    
   </section>
 </template>
 
