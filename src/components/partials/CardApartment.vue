@@ -8,7 +8,7 @@ export default {
 </script>
 
 <template>
-  <div class="card col-lg-3 col-md-6 col-sm-6 border-0 my-3">
+  <router-link :to="{ name: 'ApartmenDetail', params:{ slug: apartment.slug }}" class="card col-lg-3 col-md-6 col-sm-6 border-0 my-3 text-decoration-none">
     <div class="card p-3 bg-light">
       <img :src="apartment.image_path" class="card-img-top rounded rounded-4" alt="Appartamento" />
       <div class="card-body">
@@ -17,7 +17,7 @@ export default {
         <p class="card-text fw-bold">&euro;{{ apartment.price }}/notte</p>
       </div>
     </div>
-  </div>
+  </router-link>
 </template>
 
 <style lang="scss" scoped></style>
