@@ -69,8 +69,8 @@ export default {
           <input v-model="inputSearch" @keydown="autocomplete" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
           <button class="btn btn-success" @click="toSearch">Search</button>
         </div>
-        <ul>
-          <li @click="inputSearch = address.address.freeformAddress, position = address.position" class="bg-info" v-for="address,index in arraySuggest" :key="index">{{ address.address.freeformAddress }}</li>
+        <ul class="list-group">
+          <li @click="inputSearch = address.address.freeformAddress, position = address.position" class="cursor-pointer list-group-item list-group-item-action list-group-item-secondary" v-for="address,index in arraySuggest" :key="index">{{ address.address.freeformAddress }}</li>
         </ul>
       </div>
     </div>
@@ -92,5 +92,9 @@ export default {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.349);
+}
+
+.cursor-pointer{
+  cursor: pointer;
 }
 </style>
