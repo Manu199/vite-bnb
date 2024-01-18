@@ -2,7 +2,7 @@
 
 
 export default {
-  name: 'Erroe404',
+  name: 'Error404',
   components: {
   }
 }

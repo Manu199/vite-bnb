@@ -11,12 +11,11 @@ const router = createRouter({
       name: 'ApartmenDetail',
       component: ApartmentDetail
     },
-    // // Otros routes pueden ir aquí
-    // // {
-    // //   path: "/:pathMatch(.*)*",
-    // //   name: "error404",
-    // //   component: Error404
-    // }
+    {
+      path: "/:pathMatch(.*)*",
+      name: "error404",
+      component: Error404
+    }
   ]
 });
 
