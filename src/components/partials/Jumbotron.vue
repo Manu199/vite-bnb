@@ -69,7 +69,7 @@ export default {
           Trova l'appartamento dei tuoi sogni
         </h2>
         <div class="d-flex" role="search">
-          <input v-model="inputSearch" @keydown="autocomplete" class="form-control me-2" type="search" placeholder="Digita qui l'inidirizzo" aria-label="Search" />
+          <input v-model="inputSearch" @keydown="autocomplete" class="form-control me-2" type="search" placeholder="Digita qui l'indirizzo" aria-label="Search" />
           <button class="btn btn-success" @click="toSearch"><i class="fa-solid fa-magnifying-glass"></i></button>
         </div>
         <ul class="list-group">
