@@ -5,7 +5,7 @@ export default {
 </script>
 
 <template>
-  <div class="container ">
+  <div class="container mt-5 mb-3">
     <div
       class="content-footer d-flex flex-column flex-sm-row justify-content-between row"
     >
