@@ -37,6 +37,9 @@ export default {
                 });
         }, 300);
       }
+      else{
+        this.arraySuggest = [];
+      }
     },
 
     toSearch(){
