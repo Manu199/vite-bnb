@@ -35,7 +35,7 @@ export default {
 </script>
 
 <template>
-  <section class="lista_apartment py-4 d-flex flex-column">
+  <section class="lista_apartment py-4 d-flex flex-column container">
     
     <div v-if="store.searchListApartments.length == 0">
       <h4>Lista appartamenti</h4>

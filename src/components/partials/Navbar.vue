@@ -12,9 +12,9 @@ export default {
         <div class="col-2">
           <ul class="nav">
             <li class="nav-item">
-              <a class="nav-link btn fw-bold" href="#">
+              <router-link class="nav-link btn fw-bold" :to = "{ name: 'Home' }" href="#">
                 <img class="logo-header" src="/logo (1).png" alt="logo (1).png" />
-              </a>
+              </router-link>
             </li>
           </ul>
         </div>

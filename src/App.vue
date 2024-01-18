@@ -1,14 +1,14 @@
 <script>
 import Header from "./components/Header.vue";
-import Main from "./components/Main.vue";
 import Footer from "./components/Footer.vue";
+import Main from "./components/Main.vue";
 
 export default {
   name: "App",
   components: {
     Header,
-    Main,
     Footer,
+    Main
   },
 };
 </script>
@@ -17,8 +17,6 @@ export default {
   <Header></Header>
   <Main></Main>
   <Footer></Footer>
- 
 </template>
 
-<style scoped>
-</style>
+<style scoped></style>
