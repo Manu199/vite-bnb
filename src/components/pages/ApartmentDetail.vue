@@ -64,8 +64,8 @@ export default {
 </script>
 
 <template>
-  <div class="container">
-    <h3 class="text-black">{{ this.apartment.title }}</h3>
+  <div class="container mt-5">
+    <h3 class="text-black mb-4">{{ this.apartment.title }}</h3>
 
     <div class=" d-flex img-container">
       <img :src="apartment.image_path" alt="" class="object-fit-cover border rounded w-100">
@@ -74,7 +74,7 @@ export default {
     <div class="info-apartment row mt-3">
       <div class="info-general col-8">
         <div class="info-price">
-          <p class="fw-bold">{{ apartment.price }}/Notte</p>
+          <p class="fw-bold">&euro;{{ apartment.price }}/Notte</p>
           <p class="mb-0"><i class="fa-solid fa-circle fa-2xs me-1" style="color: #63E6BE;"></i>Disponibile</p>
 
           <div class="info-rooms mb-4">
