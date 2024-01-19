@@ -15,12 +15,10 @@ export default {
   },
   methods: {
     getApi(endpoint) {
-      console.log(endpoint);
       axios
         .get(endpoint)
         .then((res) => {
           store.apartmentsList = res.data.data;
-          console.log(store.apartmentsList);
         })
         .catch((e) => {
           console.log(e);

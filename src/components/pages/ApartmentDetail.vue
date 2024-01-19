@@ -18,10 +18,7 @@ export default {
       axios.get(store.apiUrl + 'apartment/' + slug)
         .then(res => {
           this.apartment = res.data;
-          console.log(this.apartment);
-
           this.initMap();
-
         }).catch(e => {
           console.log(e);
         })
@@ -49,8 +46,6 @@ export default {
         element: element,
         anchor: 'center',
       }).setLngLat([this.apartment.lon, this.apartment.lat]);
-
-      console.log(marker);
 
       marker.addTo(map);
     },
