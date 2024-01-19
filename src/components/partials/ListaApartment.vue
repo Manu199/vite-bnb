@@ -39,13 +39,13 @@ export default {
     
     <div v-if="store.searchListApartments.length == 0">
       <h4>Lista appartamenti</h4>
-      <div class="row justify-content-start">
+      <div class="row">
         <CardApartment v-for="apartment,index in store.apartmentsList" :key="index" :apartment="apartment" />
       </div>
     </div>
     <div v-else>
       <h4>Ricerca</h4>
-      <div class="row justify-content-start">
+      <div class="row">
         <CardApartment v-for="apartment,index in store.searchListApartments" :key="index" :apartment="apartment" />
       </div>
     </div>
