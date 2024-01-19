@@ -20,4 +20,11 @@ export default {
   </router-link>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.card{
+  height: 360px;
+  .card-img-top {
+    height: 100%;
+  }
+}
+</style>
