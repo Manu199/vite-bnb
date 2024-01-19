@@ -10,18 +10,54 @@ export default {
       store,
       slug: '',
       apartment: {},
+      coord: {
+        lng: 0,
+        lat: 0
+      },
+      map: null,
+      marker: null,
+      apiKey: 'Gd0dA91qzIELGRIdIuFGT9cxnvEZ0yEM',
     }
   },
   methods: {
     getApartmentApi(slug) {
-      axios.get(store.apiUrl + 'apartment/' + slug)
+      axios.get(store.apiUrl + 'apartment/' + slug, {
+        headers: {
+          'Accept': 'application/json',
+        }
+      })
         .then(res => {
           this.apartment = res.data;
+          this.coord.lat = res.data.lat;
+          this.coord.lng = res.data.lon;
+          console.log(this.coord);
           console.log(this.apartment);
+
+          this.initMap();
+
         }).catch(e => {
           console.log(e);
         })
-    }
+    },
+    initMap() {
+
+      this.map = tt.map({
+        key: this.apiKey,
+        container: 'map',
+        basePath: 'sdk/',
+        center: this.coord,
+        zoom: 15,
+        theme: {
+          style: 'buildings',
+          layer: 'basic',
+          source: 'vector'
+        },
+      });
+      this.map.addControl(new tt.NavigationControl());
+      // MARKER
+      this.marker = new tt.Marker().setLngLat([9.20570, 45.46700]).addTo(this.map);
+      console.log('Mappa inizializzata');
+    },
   },
   mounted() {
     this.slug = this.$route.params.slug;
@@ -62,9 +98,7 @@ export default {
           <p class=" ">{{ apartment.description }}</p>
         </div>
 
-        <div class="map bg-light">
-
-        </div>
+        <div class="map" id="map"></div>
       </div>
 
 
@@ -76,7 +110,8 @@ export default {
               <img src="http://placebeard.it/640x480" class="w-100 pe-3 object-fit-cover" alt="...">
             </div>
             <div class="text">
-              <p class=" mb-0 text-user">{{ apartment.user ? apartment.user.name : 'Utente' }} {{ apartment.user ? apartment.user.lastname : 'Anonimo' }}</p>
+              <p class=" mb-0 text-user">{{ apartment.user ? apartment.user.name : 'Utente' }} {{ apartment.user ?
+                apartment.user.lastname : 'Anonimo' }}</p>
               <p class="mb-0 numero-user">{{ apartment.user ? apartment.user.email : 'Utente' }}</p>
             </div>
           </div>
@@ -119,7 +154,5 @@ export default {
     width: 100%;
     height: 250px;
   }
-
-
 }
 </style>
