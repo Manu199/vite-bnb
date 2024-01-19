@@ -117,21 +117,68 @@ export default {
           </div>
 
           <div class="contact p-2">
-            <button class="btn btn-primary w-100 d-inline-flex justify-content-center btn-text"><a
-                href="#"></a>Contattami</button>
-          </div>
+            <div class="accordion" id="accordionExample">
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                    aria-expanded="false" aria-controls="collapseOne">
+                    Contattami
+                  </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
 
+                    <!-- FORM EMAIL-->
+                    <form>
+                      <div>
+
+                        <!-- NAME -->
+                        <div class="mb-3">
+                          <label for="name" class="form-label">Name</label>
+                          <input v-model="name" type="text" class="form-control" id="name" name="name">
+                          <span  class="badge text-bg-danger"></span>
+                        </div>
+
+                        <!-- EMAIL ADDRESS -->
+                        <div class="mb-3">
+                          <label for="email" class="form-label">Email address</label>
+                          <input v-model="email" type="email" class="form-control" id="email" name="email">
+                          <span class="badge text-bg-danger"></span>
+                        </div>
+
+                        <!-- TEXT MESSAGE -->
+                        <div class="mb-3">
+                          <label for="message" class="form-label">Message:</label>
+                          <textarea class="form-control" id="message" rows="5"
+                            name="message"></textarea>
+                          <span class="badge text-bg-danger"></span>
+                        </div>
+
+                        <!-- BUTTON -->
+                        <button type="submit" class="btn btn-primary">Invia</button>
+                      </div>
+                    </form>
+
+                    <!-- <span class="badge text-bg-success">Email inviata correttamente</span> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
         </div>
       </div>
+
+
+
+
     </div>
-
-
-
-
   </div>
 </template>
 
 <style lang="scss" scoped>
+@use '../../scss/partials/variables' as *;
+
 .container {
 
   .img {
@@ -154,5 +201,9 @@ export default {
     width: 100%;
     height: 250px;
   }
-}
-</style>
+
+  .accordion-button {
+    background-color: $primary_color;
+    color: $section_grey;
+  }
+}</style>
