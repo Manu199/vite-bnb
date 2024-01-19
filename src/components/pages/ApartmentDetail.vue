@@ -200,6 +200,14 @@ export default {
     height: 250px;
   }
 
+  #marker {
+    border: 1px solid black;
+    background-color: rgba(0, 0, 0, 0.2);
+    width: 150px;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+  }
+
   .accordion-button {
     background-color: $primary_color;
     color: $section_grey;
