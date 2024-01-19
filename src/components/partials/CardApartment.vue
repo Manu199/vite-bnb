@@ -24,7 +24,8 @@ export default {
 .card{
   height: 360px;
   .card-img-top {
-    height: 100%;
+    height: 160px;
+    object-fit: cover;
   }
 }
 </style>
