@@ -10,27 +10,14 @@ export default {
       store,
       slug: '',
       apartment: {},
-      coord: {
-        lng: 0,
-        lat: 0
-      },
-      map: null,
-      marker: null,
       apiKey: 'Gd0dA91qzIELGRIdIuFGT9cxnvEZ0yEM',
     }
   },
   methods: {
     getApartmentApi(slug) {
-      axios.get(store.apiUrl + 'apartment/' + slug, {
-        headers: {
-          'Accept': 'application/json',
-        }
-      })
+      axios.get(store.apiUrl + 'apartment/' + slug)
         .then(res => {
           this.apartment = res.data;
-          this.coord.lat = res.data.lat;
-          this.coord.lng = res.data.lon;
-          console.log(this.coord);
           console.log(this.apartment);
 
           this.initMap();
@@ -41,22 +28,31 @@ export default {
     },
     initMap() {
 
-      this.map = tt.map({
+      let map;
+
+      map = tt.map({
         key: this.apiKey,
         container: 'map',
         basePath: 'sdk/',
-        center: this.coord,
-        zoom: 15,
+        center: [this.apartment.lon, this.apartment.lat],
+        zoom: 16,
         theme: {
           style: 'buildings',
           layer: 'basic',
           source: 'vector'
         },
       });
-      this.map.addControl(new tt.NavigationControl());
-      // MARKER
-      this.marker = new tt.Marker().setLngLat([9.20570, 45.46700]).addTo(this.map);
-      console.log('Mappa inizializzata');
+      map.addControl(new tt.NavigationControl());
+
+      const element = document.getElementById('marker');
+      const marker = new tt.Marker({
+        element: element,
+        anchor: 'center',
+      }).setLngLat([this.apartment.lon, this.apartment.lat]);
+
+      console.log(marker);
+
+      marker.addTo(map);
     },
   },
   mounted() {
@@ -98,7 +94,9 @@ export default {
           <p class=" ">{{ apartment.description }}</p>
         </div>
 
-        <div class="map" id="map"></div>
+        <div class="map" id="map">
+          <div id="marker"></div>
+        </div>
       </div>
 
 
@@ -153,6 +151,14 @@ export default {
   .map {
     width: 100%;
     height: 250px;
+  }
+
+  #marker {
+    border: 1px solid black;
+    background-color: rgba(0, 0, 0, 0.2);
+    width: 10%;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
   }
 }
 </style>
