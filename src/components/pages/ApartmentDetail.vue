@@ -22,9 +22,9 @@ export default {
         text: '',
       },
       success: false,
-      nameValidationClass: 'is-invalid',
-      emailValidationClass: 'is-invalid',
-      textValidationClass: 'is-invalid',
+      nameValidationClass: '',
+      emailValidationClass: '',
+      textValidationClass: '',
     }
   },
   methods: {
@@ -92,29 +92,29 @@ export default {
     validateName() {
       if (this.name.length < 1) {
         this.errors.name = 'Il campo Nome è obbligatorio';
-        this.nameValidationClass;
+        this.nameValidationClass = 'is-invalid';
       } else {
         this.errors.name = '';
-        this.nameValidationClass;
+        this.nameValidationClass = 'is-valid';
       }
     },
     validateEmail() {
       const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
       if (!emailRegex.test(this.email_sender)) {
         this.errors.email_sender = 'Indirizzo email non valido';
-        this.emailValidationClass;
+        this.emailValidationClass = 'is-invalid';
       } else {
         this.errors.email_sender = '';
-        this.emailValidationClass;
+        this.emailValidationClass = 'is-valid';
       }
     },
     validateText() {
       if (this.text.length < 10) {
         this.errors.text = 'Il messaggio deve contenere almeno 10 caratteri';
-        this.textValidationClass;
+        this.textValidationClass = 'is-invalid';
       } else {
         this.errors.text = '';
-        this.textValidationClass;
+        this.textValidationClass = 'is-valid';
       }
     },
   },
