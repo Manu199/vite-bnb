@@ -6,80 +6,91 @@ export default {
 
 <template>
 
-  <nav class="navbar">
-    <div class="container">
-      <div class="row w-100">
+<header class="w-100">
+    <div class="container my-3">
+      <nav class="navbar navbar-expand-lg w-100 justify-content-between">
+        <!-- Logo -->
+            <a>
+              <router-link class="nav-link btn fw-bold" :to = "{ name: 'Home' }" href="#">
+                  <img class="logo-header" src="/logo (1).png" alt="logo (1).png" />
+                </router-link>
+            </a>
 
-        <div class="col-4 left">
-          <router-link class="nav-link btn fw-bold" :to = "{ name: 'Home' }" href="#">
-            <img class="logo-header" src="/logo (1).png" alt="logo (1).png" />
-          </router-link>
-        </div>
+      <div class="d-flex">
 
-        <div class="col-4 middle">
-            <a href="http://localhost:5000/ricerca-avanzata"><div class="_btn">Ricerca Avanzata</div></a>
-        </div>
+        <ul class="list-unstyled navbar-nav">
+          <li><a href="http://localhost:5000/ricerca-avanzata" >Ricerca Avanzata</a></li>  
+        </ul>
 
-        <div class="col-4 right">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link" href="http://127.0.0.1:8000/login">Accedi</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="http://127.0.0.1:8000/register">Registrati</a>
-            </li>
+        <div class="collapse navbar-collapse d-flex justify-content-end"
+              aria-labelledby="navbarDropdown" id="navbarNavDarkDropdown">
+
+            <a id="navbarDropdown"
+            class="nav-link dropdown-toggle"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+            v-pre><i class="fa-regular fa-user"></i></a>
+          
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" href="http://127.0.0.1:8000/login"><i class="fa-solid fa-right-to-bracket me-2"></i>Login</a></li>
+
+            <li><a class="dropdown-item" href="http://127.0.0.1:8000/register"><i class="fa-solid fa-pen-to-square me-2"></i>Registrazione</a></li>
+
+            <form id="logout-form" action="#" method="POST" class="d-none">
+                @csrf
+            </form>
           </ul>
+
+          </div>
+
+          
+        
+
+
+
+
         </div>
 
-      </div>
+      </nav>
     </div>
-  </nav>
-
+</header>
 </template>
 
 <style lang="scss" scoped>
 @use '../../scss/main.scss' as *;
 
-nav {
-  .left {
-    display: flex;
-    align-items: center;
-    justify-content: start;
-    .logo-header {
-      width: 150px;
+  .logo-navbar {
+    img {
+      width: 100px;
     }
   }
-  .middle {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    a {
-      text-decoration: none;
-      ._btn {
-        background-color: $primary_color;
-        padding: 3px 10px 3px 10px;
-        border-radius: 5px;
-        color: white;
-      }
-      ._btn:hover {
-        transform: scale(1.1);
-      }
-    }
+ 
+
+  
+  .logo-header {
+    width: 120px;
   }
-  .right {
-    display: flex;
-    align-items: center;
-    justify-content: end;
-    .navbar-nav {
-      display: flex;
-      flex-direction: row;
-      .nav-item {
-        padding-left: 15px;
-        .nav-link:hover {
-          transform: scale(1.1);
+  .navbar-nav {
+            display: flex;
+            flex-direction: row;
+            margin-right: 20px;
+
+        li {
+          a{
+            color: black;
+            text-decoration: none;
+            padding-bottom: 10px;
+            font-family: 'Figtree', sans-serif;
+            font-size: 16px;
+
+            &:hover{
+              color: black;
+              box-shadow: 0 2px 0 0 #17c499;
+            }
+          }
         }
-      }
-    }
-  }
-}
+  } 
 </style>
