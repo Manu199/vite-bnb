@@ -36,13 +36,13 @@ export default {
   <section class="lista_apartment py-4 d-flex flex-column container">
     
     <div v-if="store.searchListApartments.length == 0">
-      <h4>Lista appartamenti</h4>
+      <h2 class="fw-bold">Lista appartamenti</h2>
       <div class="row">
         <CardApartment v-for="apartment,index in store.apartmentsList" :key="index" :apartment="apartment" />
       </div>
     </div>
     <div v-else>
-      <h4>Ricerca</h4>
+      <h2 class="fw-bold">Ricerca</h2>
       <div class="row">
         <CardApartment v-for="apartment,index in store.searchListApartments" :key="index" :apartment="apartment" />
       </div>
