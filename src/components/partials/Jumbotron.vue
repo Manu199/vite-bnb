@@ -1,4 +1,5 @@
 <script>
+import { RouterLink } from "vue-router";
 import { store } from "../../data/store";
 import axios from "axios";
 
@@ -67,6 +68,7 @@ export default {
       this.arraySuggest = [];
       if(Object.keys(this.position).length !== 0){
         this.toSearch();
+        
       }
     },
 
@@ -100,10 +102,10 @@ export default {
 </script>
 
 <template>
-  <div class="position-relative">
+  <div class="position-relative mb-5">
     <div class="jumbotron">
       <div class="black-jumbotron"></div>
-      <div class="content-jumbotron d-flex flex-column justify-content-center position-absolute top-0 bottom-0 start-50 translate-middle-x">
+      <div class="position-absolute">
         <h2 class="text-center mb-3 text-white z-3">
           Trova l'appartamento dei tuoi sogni
         </h2>

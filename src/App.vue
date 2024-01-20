@@ -19,4 +19,6 @@ export default {
   <Footer></Footer>
 </template>
 
-<style scoped></style>
+<style lang="scss">
+  @import '../src/scss/main.scss';
+</style>
