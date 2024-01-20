@@ -11,18 +11,53 @@ export default {
       slug: '',
       apartment: {},
       apiKey: 'Gd0dA91qzIELGRIdIuFGT9cxnvEZ0yEM',
+      name: '',
+      email_sender: '',
+      text: '',
+      apartment_id: '',
+      date: new Date().toISOString().slice(0, 19).replace("T", " "),
+      errors: {
+        name: '',
+        email: '',
+        text: '',
+      },
+      success: false,
     }
   },
   methods: {
+    //API DETTAGLIO APPARTAMENTO
     getApartmentApi(slug) {
       axios.get(store.apiUrl + 'apartment/' + slug)
         .then(res => {
           this.apartment = res.data;
+          this.apartment_id = res.data.id;
+          console.log(this.apartment_id);
           this.initMap();
         }).catch(e => {
           console.log(e);
         })
     },
+
+    //API INVIO EMAIL
+    sendMailApi() {
+      const mail = {
+        name: this.name,
+        email_sender: this.email_sender,
+        text: this.text,
+        apartment_id: this.apartment_id,
+        date: this.date
+      };
+      axios.post(store.apiUrl + 'send-message', mail)
+        .then(res => {
+          this.success = res.data.success;
+          if (!this.success) {
+            this.errors = res.data.errors;
+            console.log(this.errors);
+          }
+        }).catch(e => { console.log(e); });
+    },
+
+    //SDK MAP TOMTOM
     initMap() {
 
       let map;
@@ -48,6 +83,36 @@ export default {
       }).setLngLat([this.apartment.lon, this.apartment.lat]);
 
       marker.addTo(map);
+    },
+
+    //VALIDAZIONE INPUT EMAIL
+    validateName() {
+      if (this.name.length < 1) {
+        this.errors.name = 'Il campo Nome è obbligatorio';
+        this.nameValidationClass = 'is-invalid';
+      } else {
+        this.errors.name = '';
+        this.nameValidationClass = 'is-valid';
+      }
+    },
+    validateEmail() {
+      const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+      if (!emailRegex.test(this.email_sender)) {
+        this.errors.email_sender = 'Indirizzo email non valido';
+        this.emailValidationClass = 'is-invalid';
+      } else {
+        this.errors.email_sender = '';
+        this.emailValidationClass = 'is-valid';
+      }
+    },
+    validateText() {
+      if (this.text.length < 10) {
+        this.errors.text = 'Il messaggio deve contenere almeno 10 caratteri';
+        this.textValidationClass = 'is-invalid';
+      } else {
+        this.errors.text = '';
+        this.textValidationClass = 'is-valid';
+      }
     },
   },
   mounted() {
@@ -113,8 +178,8 @@ export default {
             <div class="accordion" id="accordionExample">
               <div class="accordion-item">
                 <h2 class="accordion-header">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
-                    aria-expanded="false" aria-controls="collapseOne">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
                     Contattami
                   </button>
                 </h2>
@@ -122,29 +187,36 @@ export default {
                   <div class="accordion-body">
 
                     <!-- FORM EMAIL-->
-                    <form>
-                      <div>
+                    <form v-if="!this.success" @submit.prevent="sendMailApi()">
+                      <div class="formContent">
 
                         <!-- NAME -->
                         <div class="mb-3">
-                          <label for="name" class="form-label">Name</label>
-                          <input v-model="name" type="text" class="form-control" id="name" name="name">
-                          <span  class="badge text-bg-danger"></span>
+                          <label for="name" class="form-label me-3">Name</label>
+                          <span class="badge text-bg-danger">{{ errors.name }}</span>
+                          <input v-model="name" @input="validateName" :class="nameValidationClass" type="text"
+                            class="form-control" id="name" name="name">
+
                         </div>
 
                         <!-- EMAIL ADDRESS -->
                         <div class="mb-3">
-                          <label for="email" class="form-label">Email address</label>
-                          <input v-model="email" type="email" class="form-control" id="email" name="email">
-                          <span class="badge text-bg-danger"></span>
+                          <label for="email_sender" class="form-label me-3">Email address</label>
+                          <span class="badge text-bg-danger">{{ errors.email_sender }}</span>
+                          <input v-model="email_sender" @input="validateEmail" :class="emailValidationClass"
+                            type="email_sender" class="form-control" id="email_sender" name="email_sender">
+
                         </div>
 
                         <!-- TEXT MESSAGE -->
-                        <div class="mb-3">
-                          <label for="message" class="form-label">Message:</label>
-                          <textarea class="form-control" id="message" rows="5"
-                            name="message"></textarea>
-                          <span class="badge text-bg-danger"></span>
+                        <div class="mb-3 d-flex flex-column justify-content-between">
+                          <label for="text" class="form-label m-0">Message:</label>
+                          <div class=" badge-message overflow-hidden">
+                            <span class="badge text-bg-danger">{{ errors.text }}</span>
+                          </div>
+                          <textarea v-model="text" @input="validateText" :class="textValidationClass" class="form-control mt-2"
+                            id="text" rows="5" name="text">
+                          </textarea>
                         </div>
 
                         <!-- BUTTON -->
@@ -152,7 +224,7 @@ export default {
                       </div>
                     </form>
 
-                    <!-- <span class="badge text-bg-success">Email inviata correttamente</span> -->
+                    <span v-else class="badge text-bg-success">Email inviata correttamente</span>
                   </div>
                 </div>
               </div>
@@ -207,4 +279,16 @@ export default {
     background-color: $primary_color;
     color: $section_grey;
   }
-}</style>
+  .badge-message {
+    height: 25px;
+  }
+
+  button {
+    background-color: $primary_color;
+    border-color: $primary_color;
+    &:hover {
+      background-color: $primary_color_hover;
+    }
+  }
+}
+</style>
