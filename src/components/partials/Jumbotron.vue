@@ -48,6 +48,7 @@ export default {
       }, 300);
     },
 
+    // quando il mouse esce dalla input text
     handleBlur() {
       setTimeout(() => {
         if (!this.listItemClicked) {
@@ -61,6 +62,7 @@ export default {
       }, 200);
     },
 
+    // quando viene selezionato un li dalla lista di suggerimenti
     selectedFromSuggest(address){
       this.listItemClicked = true;
       this.inputSearch = address.address.freeformAddress; 
@@ -68,10 +70,10 @@ export default {
       this.arraySuggest = [];
       if(Object.keys(this.position).length !== 0){
         this.toSearch();
-        
       }
     },
 
+    // quando premo invio seleziona il primo elemento
     selectedFirst(){
       if (this.arraySuggest[0] && this.arraySuggest[0].address){
         this.inputSearch = this.arraySuggest[0].address.freeformAddress;
@@ -87,8 +89,8 @@ export default {
       console.log(this.position);
       axios.get(`http://127.0.0.1:8000/api/searchapartment?lat=${this.position.lat}&lon=${this.position.lon}&radius=20`)
         .then(response => {
-          store.searchListApartments = response.data.data;
-          console.log(store.searchListApartments);
+          store.apartmentsList = response.data.data;
+          console.log(store.apartmentsList);
         })
         .catch(error => {
             console.error(error);
