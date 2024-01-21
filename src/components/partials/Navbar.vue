@@ -11,7 +11,7 @@ export default {
       <nav class="navbar navbar-expand-lg w-100 justify-content-between">
         <!-- Logo -->
             <a>
-              <router-link class="nav-link btn fw-bold" :to = "{ name: 'Home' }" href="#">
+              <router-link class="nav-link btn fw-bold" :to = "{ name: 'Home' }">
                   <img class="logo-header" src="/logo (1).png" alt="logo (1).png" />
                 </router-link>
             </a>
@@ -19,7 +19,7 @@ export default {
       <div class="d-flex">
 
         <ul class="list-unstyled navbar-nav">
-          <li><a href="http://localhost:5000/ricerca-avanzata" >Ricerca Avanzata</a></li>  
+          <li><router-link :to = "{ name: 'AdvancedSearch' }" >Ricerca Avanzata</router-link></li>  
         </ul>
 
         <div class="collapse navbar-collapse d-flex justify-content-end"
