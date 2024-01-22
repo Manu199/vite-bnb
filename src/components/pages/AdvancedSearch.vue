@@ -14,8 +14,6 @@ export default {
   data() {
     return {
       store,
-      timeoutId: null,
-      listItemClicked: false,
       arrayServices: []
     }
   },
