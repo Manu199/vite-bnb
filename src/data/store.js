@@ -67,16 +67,16 @@ export const store = reactive({
                 params: params,
             })
                 .then(response => {
-                    // Se il limit è 5 significa che è richiamato per una ricerca
-                    if(limit === 5){
-                        this.arraySuggest = response.data.results;
-                    }else{
+                    // Se il limit è 1 significa sto avviando dal toSearch
+                    if(limit === 1){
                         if(response.data.results.length !== 0){
                             this.selectedAddress = response.data.results[0].address.freeformAddress;
                             this.paramsToSearch.lat = response.data.results[0].position.lat;
                             this.paramsToSearch.lon = response.data.results[0].position.lon;
                             resolve();
                         }
+                    }else{
+                        this.arraySuggest = response.data.results;
                     }
                     console.log(response.data.results);
                 })
