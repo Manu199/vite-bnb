@@ -1,61 +1,113 @@
 <script>
 export default {
   name: "Navbar",
+
+  methods: {
+    isActive(routeName) {
+      return this.$route.name === routeName;
+    },
+  },
 };
 </script>
 
 <template>
 
-<header class="w-100">
-    <div class="container my-3">
-      <nav class="navbar navbar-expand-lg w-100 justify-content-between">
+<header>
+  <nav class="navbar">
+    <div class="container">
+
+      <nav class="navbar navbar-expand w-100 justify-content-between">
         <!-- Logo -->
             <a>
               <router-link class="nav-link btn fw-bold" :to = "{ name: 'Home' }">
                   <img class="logo-header" src="/logo (1).png" alt="logo (1).png" />
-                </router-link>
+              </router-link>
             </a>
+  
+        <div class="d-flex d-none d-lg-block" >
+    
+          <ul class="navbar-nav ">
 
-      <div class="d-flex">
+            <li class="nav-item" :class="{ 'active': isActive('Home') }">
+              <router-link :to="{ name: 'Home' }">Home</router-link>
+            </li>
 
-        <ul class="list-unstyled navbar-nav">
-          <li><router-link :to = "{ name: 'AdvancedSearch' }" >Ricerca Avanzata</router-link></li>  
-        </ul>
+            <li class="nav-item" :class="{ 'active': isActive('AdvancedSearch') }">
+              <router-link :to="{ name: 'AdvancedSearch' }">Ricerca Avanzata</router-link>
+            </li>
 
-        <div class="collapse navbar-collapse d-flex justify-content-end"
-              aria-labelledby="navbarDropdown" id="navbarNavDarkDropdown">
+            <li class=" collapse dropdown navbar-collapse d-flex justify-content-end" >
+      
+              <a id="navbarDropdown"
+              class="nav-link dropdown-toggle user-guest"
+              href="#"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+              v-pre
+              >
+              <i class="fa-regular fa-user"></i></a>
+              
+              <div class="dropdown-menu dropdown-menu-end">
 
-            <a id="navbarDropdown"
-            class="nav-link dropdown-toggle"
-            href="#"
-            role="button"
-            data-bs-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-            v-pre><i class="fa-regular fa-user"></i></a>
-          
-          <ul class="dropdown-menu dropdown-menu-end">
-            <li><a class="dropdown-item" href="http://127.0.0.1:8000/login"><i class="fa-solid fa-right-to-bracket me-2"></i>Login</a></li>
+                <a class="dropdown-item" href="http://127.0.0.1:8000">Area personale</a>
+    
+                <a class="dropdown-item" href="http://127.0.0.1:8000/register">Registrazione</a>
 
-            <li><a class="dropdown-item" href="http://127.0.0.1:8000/register"><i class="fa-solid fa-pen-to-square me-2"></i>Registrazione</a></li>
-
-            <form id="logout-form" action="#" method="POST" class="d-none">
-                @csrf
-            </form>
+                <a class="dropdown-item" href="http://127.0.0.1:8000/login">Login</a>
+              </div>
+      
+            </li>
           </ul>
-
-          </div>
-
-          
-        
+    
+        </div>
 
 
+        <!-- MOBILE VIEW -->
 
+
+
+        <div class="d-flex d-lg-none">
+
+          <ul class="navbar-nav">
+
+            <li class="nav-item" :class="{ 'active': isActive('Home') }">
+             <router-link :to = "{ name: 'Home' }" >Home</router-link>
+            </li>
+
+            <li class="nav-item dropdown-style navbar-collapse d-flex justify-content-end">
+
+                <a id="navbarDropdown"
+                class="nav-link dropdown-toggle user-guest"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+                v-pre><i class="fa-regular fa-user"></i></a>
+              
+              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="http://127.0.0.1:8000">Area personale</a>
+
+                <a class="dropdown-item" href="http://127.0.0.1:8000/login">Login</a>
+                
+                <a class="dropdown-item" href="http://127.0.0.1:8000/register">Registrazione</a>
+
+                <router-link class="dropdown-item" :to = "{ name: 'AdvancedSearch' }">Ricerca Avanzata</router-link>
+
+              </div>
+
+            </li>
+
+          </ul>
 
         </div>
 
       </nav>
+
     </div>
+  </nav>
 </header>
 </template>
 
@@ -64,7 +116,7 @@ export default {
 
   .logo-navbar {
     img {
-      width: 100px;
+      width: 120px;
     }
   }
  
@@ -74,23 +126,80 @@ export default {
     width: 120px;
   }
   .navbar-nav {
-            display: flex;
-            flex-direction: row;
-            margin-right: 20px;
 
-        li {
-          a{
-            color: black;
-            text-decoration: none;
-            padding-bottom: 10px;
-            font-family: 'Figtree', sans-serif;
-            font-size: 16px;
+    display: flex;
+    flex-direction: row;
 
-            &:hover{
-              color: black;
-              box-shadow: 0 2px 0 0 #17c499;
-            }
-          }
+    li {
+        color: black;
+        text-decoration: none;
+        display: flex;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        align-items: center;
+        justify-content: center;
+        // padding-bottom: 10px;
+        font-family: 'Figtree', sans-serif;
+        font-size: medium;
+        margin: 0 10px;
+
+        &.active {
+          background-color: transparent;
+          color: black;
+          border-radius: 0;
+          box-shadow: 0 2px 0 0 #17c499;
         }
+
+        &:hover{
+          color: black;
+          box-shadow: 0 2px 0 0 #17c499;
+          border-radius: 0px;
+        }
+        
+        a{
+          text-decoration: none;
+          text-decoration-color: black;
+          color: black;
+        }
+    }
+    .dropdown-menu {
+
+        margin: 0 10px 0 10px;
+
+        a {
+            box-shadow: none;
+            width: 100%;
+            margin: 0;
+            padding-left: 10px !important;
+
+
+        }
+        a:hover {
+            box-shadow: none;
+            border-radius: 3px;
+            border: 0;
+        }
+      }
+
+    li.dropdown {
+      a {
+          box-shadow: none;
+          padding-left: 10px !important;
+          padding-right: 10px !important ;
+
+      }
+      a:hover {
+          box-shadow: none;
+          border-radius: 5px;
+      }
+    }
+
+    .user-guest {
+        padding: 5px 10px;
+        border: 2px solid #17c499;
+        border-radius: 5px;
+
+
+    }
   } 
 </style>
