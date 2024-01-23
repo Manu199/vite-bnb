@@ -12,15 +12,16 @@ export default {
   },
   data() {
     return {
-      store
+      store,
+      apartmentsList: []
     }
   },
   methods: {
-    getApi(endpoint) {
+    getAllApartment() {
       axios
-        .get(endpoint)
+        .get(store.apiUrl + "apartments")
         .then((res) => {
-          store.apartmentsList = res.data.data;
+          this.apartmentsList = res.data.data;
         })
         .catch((e) => {
           console.log(e);
@@ -28,14 +29,14 @@ export default {
     },
   },
   mounted() {
-    this.getApi(store.apiUrl + "apartments");
+    this.getAllApartment();
   },
 };
 </script>
 
 <template>
   <Jumbotron />
-  <ListaApartment />
+  <ListaApartment :apartmentsList="apartmentsList" />
 </template>
 
 <style lang="scss" scoped></style>

@@ -24,7 +24,7 @@ export default {
 
       // Imposto un timer per ritardare la chiamata di 200ms
       this.timerToCallApi = setTimeout(() =>{
-        store.tomTomGeocode(10);
+        store.tomTomGeocode(5);
       }, 200);
 
     },

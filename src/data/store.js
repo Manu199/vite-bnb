@@ -17,6 +17,12 @@ export const store = reactive({
         services: '',
     },
 
+    setParamsToSearch: function(selectedAddress, lat, lon, radius, minRooms, minBeds, services) {
+        this.selectedAddress = selectedAddress
+        this.paramsToSearch = { lat, lon, radius, minRooms, minBeds, services };
+        this.selectedServices = services.split(' ');
+    },
+
     // Funzione ricerca dentro il nostro DB
     toSearch: function() {
         console.log('toSearch');
@@ -36,7 +42,13 @@ export const store = reactive({
                             this.apartmentsList = response.data.data;
                             console.log(this.apartmentsList);
 
-                            router.push('/ricerca-avanzata');
+                            router.push({
+                                path: '/ricerca-avanzata',
+                                query: {
+                                    selectedAddress: this.selectedAddress,
+                                    ...this.paramsToSearch,
+                                },
+                            });
                         })
                         .catch(error => {
                             console.error(error);
@@ -46,7 +58,7 @@ export const store = reactive({
     },
 
     // Funzione richiesta API tom tom geocode
-    tomTomGeocode: function(limit){
+    tomTomGeocode: function(limit) {
 
         return new Promise((resolve,reject) => {
             // Costruisco l'endpoint

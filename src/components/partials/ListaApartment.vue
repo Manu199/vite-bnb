@@ -7,6 +7,9 @@ export default {
   components: {
     CardApartment,
   },
+  props:{
+    apartmentsList: Array
+  },
   data() {
     return {
       store,
@@ -20,16 +23,16 @@ export default {
     
     <h2 class="fw-bold">
       <span>Lista appartamenti </span>
-      <span v-if="store.apartmentsList.length !== 0">[{{ store.apartmentsList.length }}]</span>
+      <span v-if="apartmentsList.length !== 0">[{{ apartmentsList.length }}]</span>
     </h2>
     
-    <div v-if="store.apartmentsList.length === 0">
+    <div v-if="apartmentsList.length === 0">
       <h4>Nessun risultato...</h4>
     </div>
 
     <div class="v-else">
       <div class="row">
-        <CardApartment v-for="apartment,index in store.apartmentsList" :key="index" :apartment="apartment" />
+        <CardApartment v-for="apartment,index in apartmentsList" :key="'apartment'+index" :apartment="apartment" />
       </div>
     </div>
     

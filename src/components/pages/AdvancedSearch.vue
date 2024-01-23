@@ -28,31 +28,31 @@ export default {
             console.error(error);
         });
     },
+    setToSearch(){
+      // Accedi ai parametri della query string
+      const selectedAddress = this.$route.query.selectedAddress ?? '';
+      const lat = this.$route.query.lat ?? null;
+      const lon = this.$route.query.lon ?? null;
+      const radius = this.$route.query.radius ?? 10;
+      const minRooms = this.$route.query.minRooms ?? 0;
+      const minBeds = this.$route.query.minBeds ?? 0;
+      const services = this.$route.query.services ?? '';
 
-    viewSomeApartments(){
-      if(store.apartmentsList.length === 0){
-        this.getAllApartments();
-      }
-    },
-
-    getAllApartments() {
-      axios
-        .get(store.apiUrl + "apartments")
-        .then((res) => {
-          store.apartmentsList = res.data.data;
-        })
-        .catch((e) => {
-          console.log(e);
-        });
-    },
-    
+      // Esegui il metodo nel servizio reactive per impostare i dati
+      console.log('sto settando i parametri');
+      this.store.setParamsToSearch(selectedAddress, lat, lon, radius, minRooms, minBeds, services);
+      console.log('ho settato');
+      this.store.apartmentsList = [];
+      console.log('pulizia apartList', this.store.apartmentsList);
+      this.store.toSearch();
+    }
   },
   mounted() {
     // mantenere il dato anche dopo un F5
     // localStorage.setItem("myInputValue", this.store.selectedAddress);
     // this.store.selectedAddress = localStorage.getItem("myInputValue") || "";
     this.getServices();
-    this.viewSomeApartments();
+    this.setToSearch();
   },
   
 };
@@ -147,9 +147,10 @@ export default {
           <p>Selected Services: {{ store.selectedServices }}</p>
       </div>
 
-      <ListaApartment />
-
       <button  @click="store.toSearch" class="btn btn-primary"><i class="fa-solid fa-magnifying-glass"></i></button>
+
+      <ListaApartment :apartmentsList="store.apartmentsList" />
+
     </div>
   </div>
   
