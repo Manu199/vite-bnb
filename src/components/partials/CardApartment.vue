@@ -16,7 +16,10 @@ export default {
         <div class="card-body">
           <h6 class="card-title single-line-ellipsis fw-bold">{{ apartment.title }}</h6>
           <p class="card-text">{{ apartment.num_of_bed }} letto/i &middot; {{ apartment.num_of_bathroom }} bagno/i &middot; {{ apartment.square_meters }} mq</p>
-          <p class="card-text fw-bold">&euro;{{ apartment.price }}/notte</p>
+          <p class="card-text fw-bold d-flex justify-content-between">
+            <span>&euro;{{ apartment.price }}/notte</span>
+            <span v-if="apartment.distance">{{ apartment.distance.toFixed(1) }} km</span>
+          </p>
         </div>
       </div>
     </router-link>
