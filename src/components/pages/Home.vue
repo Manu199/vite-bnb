@@ -27,9 +27,13 @@ export default {
           console.log(e);
         });
     },
+    resetData(){
+      this.store.setParamsToSearch('',null,null,10,0,0,'');
+    }
   },
   mounted() {
     this.getAllApartment();
+    this.resetData();
   },
 };
 </script>
