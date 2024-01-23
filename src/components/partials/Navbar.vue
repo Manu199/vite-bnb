@@ -36,7 +36,7 @@ export default {
               <router-link :to="{ name: 'AdvancedSearch' }">Ricerca Avanzata</router-link>
             </li>
 
-            <li class=" collapse dropdown navbar-collapse d-flex justify-content-end" >
+            <li class=" collapse dropdown navbar-collapse d-flex justify-content-end hover-fix" >
       
               <a id="navbarDropdown"
               class="nav-link dropdown-toggle user-guest"
@@ -72,11 +72,7 @@ export default {
 
           <ul class="navbar-nav">
 
-            <li class="nav-item" :class="{ 'active': isActive('Home') }">
-             <router-link :to = "{ name: 'Home' }" >Home</router-link>
-            </li>
-
-            <li class="nav-item dropdown-style navbar-collapse d-flex justify-content-end">
+            <li class="nav-item dropdown-style navbar-collapse d-flex justify-content-end hover-fix">
 
                 <a id="navbarDropdown"
                 class="nav-link dropdown-toggle user-guest"
@@ -88,13 +84,17 @@ export default {
                 v-pre><i class="fa-regular fa-user"></i></a>
               
               <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+
+                <router-link class="dropdown-item" :to = "{ name: 'Home' }" >Home</router-link>
+                
+                <router-link class="dropdown-item" :to = "{ name: 'AdvancedSearch' }">Ricerca Avanzata</router-link>
+
                 <a class="dropdown-item" href="http://127.0.0.1:8000">Area personale</a>
 
                 <a class="dropdown-item" href="http://127.0.0.1:8000/login">Login</a>
                 
                 <a class="dropdown-item" href="http://127.0.0.1:8000/register">Registrazione</a>
 
-                <router-link class="dropdown-item" :to = "{ name: 'AdvancedSearch' }">Ricerca Avanzata</router-link>
 
               </div>
 
@@ -130,6 +130,11 @@ export default {
     display: flex;
     flex-direction: row;
 
+    li.hover-fix:hover {
+      color: white;
+      box-shadow: none;
+    }
+
     li {
         color: black;
         text-decoration: none;
@@ -138,7 +143,6 @@ export default {
         padding-right: 0 !important;
         align-items: center;
         justify-content: center;
-        // padding-bottom: 10px;
         font-family: 'Figtree', sans-serif;
         font-size: medium;
         margin: 0 10px;
@@ -154,6 +158,8 @@ export default {
           color: black;
           box-shadow: 0 2px 0 0 #17c499;
           border-radius: 0px;
+
+
         }
         
         a{
@@ -163,8 +169,6 @@ export default {
         }
     }
     .dropdown-menu {
-
-        margin: 0 10px 0 10px;
 
         a {
             box-shadow: none;
@@ -196,10 +200,13 @@ export default {
 
     .user-guest {
         padding: 5px 10px;
-        border: 2px solid #17c499;
+        background-color: #17c499;
         border-radius: 5px;
+        color: white !important;
 
-
+        &:hover{
+          color: white !important;
+        }
     }
   } 
 </style>
