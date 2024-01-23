@@ -12,7 +12,12 @@ export default {
 
     <router-link :to="{ name: 'ApartmenDetail', params:{ slug: apartment.slug }}" class="text-decoration-none">
       <div class="card">
-        <img :src="apartment.image_path" class="card-img-top rounded rounded-4" alt="Appartamento" />
+        <div class="position-relative">
+          <img :src="apartment.image_path" class="card-img-top rounded rounded-4" alt="Appartamento" />
+          <div v-if="apartment.is_sponsored" class="sponsor-badge text-bg-warning">
+            <span>Consigliato</span>
+          </div>
+        </div>
         <div class="card-body">
           <h6 class="card-title single-line-ellipsis fw-bold">{{ apartment.title }}</h6>
           <p class="card-text">{{ apartment.num_of_bed }} letto/i &middot; {{ apartment.num_of_bathroom }} bagno/i &middot; {{ apartment.square_meters }} mq</p>
@@ -45,6 +50,18 @@ export default {
 
 .card:hover{
     transform: scale(1.03);
+}
+
+.sponsor-badge{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200px;
+    transform: translate(-30%, 166%) rotate(-45deg);
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
 }
 
     
