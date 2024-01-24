@@ -1,0 +1,6 @@
+.single-line-ellipsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* Aggiunge i puntini di sospensione */
+}

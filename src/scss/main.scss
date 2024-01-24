@@ -9,12 +9,10 @@ body{
 }
 
 .btn-custom-primary {
-  border: none;
-  background-color: $primary_color;
-  padding: 3px 10px 3px 10px;
-  border-radius: 5px;
+  background-color: #016A70;
   color: white;
 }
 .btn-custom-primary:hover {
-  background-color: darken($primary_color, 5%);;
+  background-color: rgba($color: #025054, $alpha: 1);
+  color: white;
 }
