@@ -185,7 +185,7 @@ export default {
                 <!-- NAME -->
                 <div class="mb-3">
                   <label for="name" class="form-label me-3">Nome</label>
-                  <span v-if="errors.name !== undefined" class="badge text-bg-danger">{{ errors.name[0] }}</span>
+                  <span class="badge text-bg-danger">{{ errors.name }}</span>
                   <input v-model="name" @input="validateName" :class="nameValidationClass" type="text"
                     class="form-control" id="name" name="name">
 
@@ -194,8 +194,7 @@ export default {
                 <!-- EMAIL ADDRESS -->
                 <div class="mb-3">
                   <label for="email_sender" class="form-label me-3">Indirizzo Email</label>
-                  <span v-if="errors.email_sender !== undefined && errors.email_sender.length > 0"
-                    class="badge text-bg-danger">{{ errors.email_sender[0] }}</span>
+                  <span class="badge text-bg-danger">{{ errors.email_sender }}</span>
                   <input v-model="email_sender" @input="validateEmail" :class="emailValidationClass" type="email_sender"
                     class="form-control" id="email_sender" name="email_sender">
 
@@ -204,8 +203,8 @@ export default {
                 <!-- TEXT MESSAGE -->
                 <div class="mb-3 d-flex flex-column justify-content-between">
                   <label for="text" class="form-label m-0">Messaggio:</label>
-                  <div v-if="errors.text !== undefined && errors.text.length > 0" class="badge-message overflow-hidden">
-                    <span class="badge text-bg-danger">{{ errors.text[0] }}</span>
+                  <div class="badge-message overflow-hidden">
+                    <span class="badge text-bg-danger">{{ errors.text }}</span>
                   </div>
                   <textarea v-model="text" @input="validateText" :class="textValidationClass" class="form-control mt-2"
                     id="text" rows="5" name="text">
