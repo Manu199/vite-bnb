@@ -90,7 +90,7 @@ export default {
     //VALIDAZIONE INPUT EMAIL
     validateName() {
       if (this.name.length < 1) {
-        this.errors.name = 'Il campo Nome è obbligatorio';
+        this.errors.name = 'Il Nome è obbligatorio';
         this.nameValidationClass = 'is-invalid';
       } else {
         this.errors.name = '';
@@ -163,9 +163,10 @@ export default {
 
 
       <div class="info-seller col-4">
-        <div class="card mb-3 px-0 d-flex flex-column">
+        <div class="card mb-3 d-flex flex-column">
 
-          <div class="info-user d-flex flex-nowrap p-2">
+          <!-- IMMAGINE/NOME COGNOME -->
+          <div class="info-user d-flex flex-nowrap p-3">
             <div class="img">
               <img src="http://placebeard.it/640x480" class="w-100 pe-3 object-fit-cover" alt="...">
             </div>
@@ -176,67 +177,48 @@ export default {
             </div>
           </div>
 
-          <div class="contact p-2">
-            <div class="accordion" id="accordionExample">
-              <div class="accordion-item">
-                <h2 class="accordion-header">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                    Contattami
-                  </button>
-                </h2>
-                <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                  <div class="accordion-body">
+          <div class="body-card p-3">
+            <!-- FORM EMAIL-->
+            <form v-if="!this.success" @submit.prevent="sendMailApi()">
+              <div class="formContent">
 
-                    <!-- FORM EMAIL-->
-                    <form v-if="!this.success" @submit.prevent="sendMailApi()">
-                      <div class="formContent">
+                <!-- NAME -->
+                <div class="mb-3">
+                  <label for="name" class="form-label me-3">Nome</label>
+                  <span class="badge text-bg-danger">{{ errors.name }}</span>
+                  <input v-model="name" @input="validateName" :class="nameValidationClass" type="text"
+                    class="form-control" id="name" name="name">
 
-                        <!-- NAME -->
-                        <div class="mb-3">
-                          <label for="name" class="form-label me-3">Name</label>
-                          <span class="badge text-bg-danger">{{ errors.name }}</span>
-                          <input v-model="name" @input="validateName" :class="nameValidationClass" type="text"
-                            class="form-control" id="name" name="name">
-
-                        </div>
-
-                        <!-- EMAIL ADDRESS -->
-                        <div class="mb-3">
-                          <label for="email_sender" class="form-label me-3">Email address</label>
-                          <span class="badge text-bg-danger">{{ errors.email_sender }}</span>
-                          <input v-model="email_sender" @input="validateEmail" :class="emailValidationClass"
-                            type="email_sender" class="form-control" id="email_sender" name="email_sender">
-
-                        </div>
-
-                        <!-- TEXT MESSAGE -->
-                        <div class="mb-3 d-flex flex-column justify-content-between">
-                          <label for="text" class="form-label m-0">Message:</label>
-                          <div class=" badge-message overflow-hidden">
-                            <span class="badge text-bg-danger">{{ errors.text }}</span>
-                          </div>
-                          <textarea v-model="text" @input="validateText" :class="textValidationClass" class="form-control mt-2"
-                            id="text" rows="5" name="text">
-                          </textarea>
-                        </div>
-
-                        <!-- BUTTON -->
-                        <button type="submit" class="btn btn-primary">Invia</button>
-                      </div>
-                    </form>
-
-                    <span v-else class="badge text-bg-success">Email inviata correttamente</span>
-                  </div>
                 </div>
-              </div>
-            </div>
 
+                <!-- EMAIL ADDRESS -->
+                <div class="mb-3">
+                  <label for="email_sender" class="form-label me-3">Indirizzo Email</label>
+                  <span class="badge text-bg-danger">{{ errors.email_sender }}</span>
+                  <input v-model="email_sender" @input="validateEmail" :class="emailValidationClass" type="email_sender"
+                    class="form-control" id="email_sender" name="email_sender">
+
+                </div>
+
+                <!-- TEXT MESSAGE -->
+                <div class="mb-3 d-flex flex-column justify-content-between">
+                  <label for="text" class="form-label m-0">Messaggio:</label>
+                  <div class="badge-message overflow-hidden">
+                    <span class="badge text-bg-danger">{{ errors.text }}</span>
+                  </div>
+                  <textarea v-model="text" @input="validateText" :class="textValidationClass" class="form-control mt-2"
+                    id="text" rows="5" name="text">
+                          </textarea>
+                </div>
+
+                <!-- BUTTON -->
+                <button type="submit" class="btn btn-primary">Invia</button>
+              </div>
+            </form>
+            <span v-else class="badge text-bg-success">Email inviata correttamente</span>
           </div>
         </div>
       </div>
-
-
 
 
     </div>
@@ -281,6 +263,7 @@ export default {
     background-color: $primary_color;
     color: $section_grey;
   }
+
   .badge-message {
     height: 25px;
   }
@@ -288,6 +271,7 @@ export default {
   button {
     background-color: $primary_color;
     border-color: $primary_color;
+
     &:hover {
       background-color: $primary_color_hover;
     }
