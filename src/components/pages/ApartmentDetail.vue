@@ -159,7 +159,7 @@ export default {
     </div>
 
     <div class="info-apartment row mt-3">
-      <div class="info-general col-8">
+      <div class="info-general col-md-8">
         <div class="info-price">
           <p class="fw-bold">&euro;{{ apartment.price }}/Notte</p>
           <p class="mb-0"><i class="fa-solid fa-circle fa-2xs me-1" style="color: #63E6BE;"></i>Disponibile</p>
@@ -173,12 +173,12 @@ export default {
 
         <div class="info-services row py-4 pe-4 border-bottom border-top w-75">
           <span v-html="service.name" v-for="(service, index) in this.apartment.services" :key="index"
-            class="col-6"></span>
+            class="col-lg-6"></span>
         </div>
 
 
         <div class="description-apartment py-3">
-          <p class=" ">{{ apartment.description }}</p>
+          <p>{{ apartment.description }}</p>
         </div>
 
         <div class="map" id="map">
@@ -187,7 +187,7 @@ export default {
       </div>
 
 
-      <div class="info-seller col-4">
+      <div class="info-seller col-md-4 mt-md-0 mt-3">
         <div class="card mb-3 d-flex flex-column">
 
           <!-- IMMAGINE/NOME COGNOME -->
