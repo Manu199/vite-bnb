@@ -24,6 +24,9 @@ export default {
       nameValidationClass: '',
       emailValidationClass: '',
       textValidationClass: '',
+
+      showModal: false,
+      message: '',
     }
   },
   methods: {
@@ -51,12 +54,32 @@ export default {
       };
       axios.post(store.apiUrl + 'send-message', mail)
         .then(res => {
+          console.log(res.data);
           this.success = res.data.success;
           if (!this.success) {
             this.errors = res.data.errors;
             console.log(this.errors);
+            this.message = this.errors;
+          }else{
+            this.message = 'Messaggio inviato con successo!';
+            // resetto tutti i campi
+            this.name = '';
+            this.email_sender = '';
+            this.text = '';
+            this.nameValidationClass = '';
+            this.emailValidationClass = '';
+            this.textValidationClass = '';
           }
+          this.openModal();
         }).catch(e => { console.log(e); });
+    },
+
+    openModal() {
+      console.log('sto aprendo la modal');
+      this.showModal = true;
+    },
+    closeModal() {
+      this.showModal = false;
     },
 
     //SDK MAP TOMTOM
@@ -179,7 +202,7 @@ export default {
 
           <div class="body-card p-3">
             <!-- FORM EMAIL-->
-            <form v-if="!this.success" @submit.prevent="sendMailApi()">
+            <form @submit.prevent="sendMailApi()">
               <div class="formContent">
 
                 <!-- NAME -->
@@ -211,15 +234,32 @@ export default {
                           </textarea>
                 </div>
 
-                <!-- BUTTON -->
+
+                <!-- Button send message -->
                 <button type="submit" class="btn btn-primary">Invia</button>
               </div>
             </form>
-            <span v-else class="badge text-bg-success">Email inviata correttamente</span>
           </div>
         </div>
       </div>
 
+      <!-- Modal -->
+      <div class="modal fade" :class="{ 'show': showModal }" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+              <button @click="closeModal" type="button" class="btn-close" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              {{ this.message }}
+            </div>
+            <div class="modal-footer">
+              <button @click="closeModal" type="button" class="btn btn-secondary" >Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
     </div>
   </div>
@@ -276,5 +316,11 @@ export default {
       background-color: $primary_color_hover;
     }
   }
+
+
+  .modal.show {
+    display: block !important;
+  }
+
 }
 </style>
