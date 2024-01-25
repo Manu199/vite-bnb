@@ -60,7 +60,7 @@ export default {
             this.errors = res.data.errors;
             console.log(this.errors);
             this.message = this.errors;
-          }else{
+          } else {
             this.message = 'Messaggio inviato con successo!';
             // resetto tutti i campi
             this.name = '';
@@ -77,9 +77,11 @@ export default {
     openModal() {
       console.log('sto aprendo la modal');
       this.showModal = true;
+      document.body.classList.add('modal-open');
     },
     closeModal() {
       this.showModal = false;
+      document.body.classList.remove('modal-open');
     },
 
     //SDK MAP TOMTOM
@@ -247,15 +249,11 @@ export default {
       <div class="modal fade" :class="{ 'show': showModal }" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
-              <button @click="closeModal" type="button" class="btn-close" aria-label="Close"></button>
-            </div>
             <div class="modal-body">
               {{ this.message }}
             </div>
             <div class="modal-footer">
-              <button @click="closeModal" type="button" class="btn btn-secondary" >Close</button>
+              <button @click="closeModal" type="button" class="btn btn-secondary">Close</button>
             </div>
           </div>
         </div>
@@ -320,6 +318,19 @@ export default {
 
   .modal.show {
     display: block !important;
+  }
+
+  .modal {
+    &.show {
+      display: block !important;
+      background: rgba(0, 0, 0, 0.5); // Sfondo semi-trasparente
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1000; // Assicurati che lo z-index sia superiore a quello degli altri elementi
+    }
   }
 
 }
