@@ -25,8 +25,10 @@ export default {
       emailValidationClass: '',
       textValidationClass: '',
 
-      showModal: false,
+      // MODAL message
+      modalResultMessage: null,
       message: '',
+
     }
   },
   methods: {
@@ -75,13 +77,10 @@ export default {
     },
 
     openModal() {
-      console.log('sto aprendo la modal');
-      this.showModal = true;
-      document.body.classList.add('modal-open');
+      this.modalResultMessage.show();
     },
     closeModal() {
-      this.showModal = false;
-      document.body.classList.remove('modal-open');
+      this.modalResultMessage.hide();
     },
 
     //SDK MAP TOMTOM
@@ -145,6 +144,10 @@ export default {
   mounted() {
     this.slug = this.$route.params.slug;
     this.getApartmentApi(this.slug);
+
+    // Inizializzo una nuova istanza di una modal di Bootstrap
+    // L'istanza è associata all'elemento con l'ID 'modal-result-message' nel template HTML
+    this.modalResultMessage = new bootstrap.Modal('#modal-result-message', {})
   }
 
 };
@@ -246,7 +249,7 @@ export default {
       </div>
 
       <!-- Modal -->
-      <div class="modal fade" :class="{ 'show': showModal }" tabindex="-1">
+      <div class="modal fade" id="modal-result-message" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
             <div class="modal-body">
@@ -316,22 +319,22 @@ export default {
   }
 
 
-  .modal.show {
-    display: block !important;
-  }
+  // .modal.show {
+  //   display: block !important;
+  // }
 
-  .modal {
-    &.show {
-      display: block !important;
-      background: rgba(0, 0, 0, 0.5); // Sfondo semi-trasparente
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1000; // Assicurati che lo z-index sia superiore a quello degli altri elementi
-    }
-  }
+  // .modal {
+  //   &.show {
+  //     display: block !important;
+  //     background: rgba(0, 0, 0, 0.5); // Sfondo semi-trasparente
+  //     position: fixed;
+  //     top: 0;
+  //     left: 0;
+  //     width: 100%;
+  //     height: 100%;
+  //     z-index: 1000; // Assicurati che lo z-index sia superiore a quello degli altri elementi
+  //   }
+  // }
 
 }
 </style>
