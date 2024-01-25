@@ -365,9 +365,7 @@ input[type="radio"][name="radio-beds"]:checked + label {
     position: absolute;
     top: 0;
     left: 0;
-    -webkit-filter: url("#goo-12");
-    filter: url("#goo-12");
-    transform: trasnlate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
     pointer-events: none;
   }
   .checkbox-wrapper-12 .cbx svg {
