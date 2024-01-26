@@ -29,6 +29,12 @@ export default {
       modalResultMessage: null,
       message: '',
 
+      //SPINNER message
+      loading: false,
+
+      //SERVICES
+      showAllServices: false,
+
     }
   },
   methods: {
@@ -37,6 +43,7 @@ export default {
       axios.get(store.apiUrl + 'apartment/' + slug)
         .then(res => {
           this.apartment = res.data;
+          console.log(this.apartment);
           this.apartment_id = res.data.id;
           console.log(this.apartment_id);
           this.initMap();
@@ -47,6 +54,15 @@ export default {
 
     //API INVIO EMAIL
     sendMailApi() {
+
+  this.validateName();
+  this.validateEmail();
+  this.validateText();
+
+  if (this.errors.name || this.errors.email_sender || this.errors.text) {
+    return;
+  }
+      this.loading = true;
       const mail = {
         name: this.name,
         email_sender: this.email_sender,
@@ -72,8 +88,12 @@ export default {
             this.emailValidationClass = '';
             this.textValidationClass = '';
           }
+        })
+        .catch(e => { console.log(e); })
+        .finally(() => {
+          this.loading = false;
           this.openModal();
-        }).catch(e => { console.log(e); });
+        });
     },
 
     openModal() {
@@ -148,7 +168,15 @@ export default {
     // Inizializzo una nuova istanza di una modal di Bootstrap
     // L'istanza è associata all'elemento con l'ID 'modal-result-message' nel template HTML
     this.modalResultMessage = new bootstrap.Modal('#modal-result-message', {})
-  }
+  },
+  computed: {
+    servicesToShow() {
+      return this.showAllServices ? (this.apartment.services || []) : (this.apartment.services || []).slice(0, 5);
+    },
+    hasMoreServices() {
+      return this.showAllServices && (this.apartment.services || []).length > 5;
+    },
+  },
 
 };
 </script>
@@ -175,9 +203,12 @@ export default {
         </div>
 
         <div class="info-services row py-4 pe-4 border-bottom border-top w-75">
-          <span v-html="service.name" v-for="(service, index) in this.apartment.services" :key="index"
-            class="col-lg-6"></span>
+          <span v-html="service.name" v-for="(service, index) in servicesToShow" :key="index" class="col-lg-6"></span>
         </div>
+
+        <button v-if="!showAllServices && (apartment.services || []).length > 5" @click="showAllServices = true"
+          class="btn btn-primary mt-2">Mostra Altro...</button>
+        <button v-if="showAllServices" @click="showAllServices = false" class="btn btn-primary mt-2">Mostra Meno</button>
 
 
         <div class="description-apartment py-3">
@@ -241,7 +272,14 @@ export default {
 
 
                 <!-- Button send message -->
-                <button type="submit" class="btn btn-primary">Invia</button>
+                <button class="btn" :class="{ 'btn-primary': !loading, 'btn-secondary': loading }" :disabled="loading"
+                  @click="sendMailApi">
+                  <span v-if="loading">
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Caricamento...
+                  </span>
+                  <span v-else>Invia</span>
+                </button>
               </div>
             </form>
           </div>
