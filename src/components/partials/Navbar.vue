@@ -18,11 +18,9 @@ export default {
 
       <nav class="navbar navbar-expand w-100 justify-content-between">
         <!-- Logo -->
-            <a>
               <router-link class="nav-link btn fw-bold" :to = "{ name: 'Home' }">
                   <img class="logo-header" src="/logo (1).png" alt="logo (1).png" />
               </router-link>
-            </a>
   
         <div class="d-flex d-none d-lg-block" >
     

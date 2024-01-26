@@ -20,13 +20,17 @@ export default {
     <div class="jumbotron">
       <div class="black-jumbotron"></div>
       <div class="container position-absolute">
-          <h2 class="text-center mb-3 text-white z-3">
-            Trova l'appartamento dei tuoi sogni
-          </h2>
-          <div class="position-relative input-search ">
-            <InputWithAutocomplete/>
-            <button @click="store.toSearch" class="btn btn-search position-absolute"><i class="fa-solid fa-magnifying-glass"></i></button>
+        <div class="row">
+          <div class="col">
+            <h2 class="text-center mb-3 text-white z-3">
+              Trova l'appartamento dei tuoi sogni
+            </h2>
+            <div class="position-relative input-search">
+              <InputWithAutocomplete/>
+              <button @click="store.toSearch" class="btn btn-search position-absolute"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
           </div>
+        </div>
       </div>
     </div>
   </div>
@@ -69,8 +73,9 @@ export default {
 
 
 @media screen and (min-width: 576px) {
-    .input-search {
+    .input-search { 
         max-width: 1000px;
+        margin: 0  auto;
     }
 }
 </style>
