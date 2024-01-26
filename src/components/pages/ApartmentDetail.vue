@@ -345,7 +345,7 @@ export default {
   }
 
   .accordion-button {
-    background-color: $primary_color;
+    background-color: $primaryColor;
     color: $section_grey;
   }
 
@@ -356,9 +356,12 @@ export default {
   .button {
     background-color: $primary_color;
     border-color: $primary_color;
+  button {
+    background-color: $primaryColor;
+    border-color: $primaryColor;
 
     &:hover {
-      background-color: $primary_color_hover;
+      background-color: $secondaryColor;
     }
   }
 

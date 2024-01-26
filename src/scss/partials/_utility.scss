@@ -4,3 +4,22 @@
     text-overflow: ellipsis;
     /* Aggiunge i puntini di sospensione */
 }
+
+.btn-search {
+    top: 50%;
+    transform: translate(-10%, -50%);
+    right: 0;
+    background-color: $primaryColor;
+    padding: 10px 15px;
+    border-radius: 25px;
+    color: white;
+  
+    &:hover{
+      background-color: darken($primaryColor, 5%);
+      color: white;
+    }
+    &:focus{
+      background-color: darken($primaryColor, 5%) !important;
+      color: white !important;
+    }
+  }

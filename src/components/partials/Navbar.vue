@@ -151,12 +151,12 @@ export default {
           background-color: transparent;
           color: black;
           border-radius: 0;
-          box-shadow: 0 2px 0 0 #17c499;
+          box-shadow: 0 2px 0 0 $primaryColor;
         }
 
         &:hover{
           color: black;
-          box-shadow: 0 2px 0 0 #17c499;
+          box-shadow: 0 2px 0 0 $primaryColor;
           border-radius: 0px;
 
 
@@ -183,6 +183,11 @@ export default {
             border-radius: 3px;
             border: 0;
         }
+        .dropdown-item:active {
+            color: var(--bs-dropdown-link-active-color);
+            text-decoration: none;
+            background-color:  $primaryColor;
+          }
       }
 
     li.dropdown {
@@ -200,7 +205,7 @@ export default {
 
     .user-guest {
         padding: 5px 10px;
-        background-color: #17c499;
+        background-color: $primaryColor;
         border-radius: 5px;
         color: white !important;
 

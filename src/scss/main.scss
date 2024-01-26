@@ -1,7 +1,9 @@
+@import 'bootstrap/scss/bootstrap';
 @import './partials/_general';
 @import './partials/_variables';
-@import 'bootstrap/scss/bootstrap';
+@import './partials/checkbox';
 @import './partials/utility';
+
 // @import "~@tomtom-international/web-sdk-maps/css/map.css";
 
 body{
@@ -9,10 +11,10 @@ body{
 }
 
 .btn-custom-primary {
-  background-color: #016A70;
+  background-color: $primaryColor;
   color: white;
 }
 .btn-custom-primary:hover {
-  background-color: rgba($color: #025054, $alpha: 1);
+  background-color: rgba($color: $primaryColor, $alpha: 1);
   color: white;
 }
