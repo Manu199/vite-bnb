@@ -353,9 +353,6 @@ export default {
     height: 25px;
   }
 
-  .button {
-    background-color: $primary_color;
-    border-color: $primary_color;
   button {
     background-color: $primaryColor;
     border-color: $primaryColor;
