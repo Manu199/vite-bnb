@@ -28,6 +28,7 @@ export default {
       // MODAL message
       modalResultMessage: null,
       message: '',
+      loading: false,
 
     }
   },
@@ -37,6 +38,7 @@ export default {
       axios.get(store.apiUrl + 'apartment/' + slug)
         .then(res => {
           this.apartment = res.data;
+          console.log(this.apartment);
           this.apartment_id = res.data.id;
           console.log(this.apartment_id);
           this.initMap();
@@ -47,6 +49,7 @@ export default {
 
     //API INVIO EMAIL
     sendMailApi() {
+      this.loading = true;
       const mail = {
         name: this.name,
         email_sender: this.email_sender,
@@ -72,8 +75,13 @@ export default {
             this.emailValidationClass = '';
             this.textValidationClass = '';
           }
+        })
+        .catch(e => { console.log(e); })
+        .finally(() => {
+          this.loading = false;
           this.openModal();
-        }).catch(e => { console.log(e); });
+        });
+
     },
 
     openModal() {
@@ -241,7 +249,14 @@ export default {
 
 
                 <!-- Button send message -->
-                <button type="submit" class="btn btn-primary">Invia</button>
+                <button class="btn" :class="{ 'btn-primary': !loading, 'btn-secondary': loading }" :disabled="loading"
+                  @click="sendMailApi">
+                  <span v-if="loading">
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Caricamento...
+                  </span>
+                  <span v-else>Invia</span>
+                </button>
               </div>
             </form>
           </div>
