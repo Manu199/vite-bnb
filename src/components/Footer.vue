@@ -9,7 +9,7 @@ export default {
     <div class="container mt-5 mb-3">
       <div class="row">
         <!-- LOGO -->
-        <div class="logo-footer col-12 col-xs-4 col-md-4 mb-3 mb-sm-0 d-flex justify-content-center align-items-center justify-content-sm-center logo-footer">
+        <div class="logo-footer col-12 col-xs-4 col-md-4 mb-3 mb-sm-0 d-flex justify-content-center align-items-center justify-content-sm-center justify-content-md-start logo-footer">
           <img class="img-fluid" src="../../public/logo (1).png" alt="" />
         </div>
 
@@ -26,7 +26,7 @@ export default {
         </div>
 
         <!-- MENU FOOTER -->
-        <div class="col-12 col-xs-4 col-md-4 d-flex align-items-center justify-content-center justify-content-sm-center">
+        <div class="col-12 col-xs-4 col-md-4 d-flex align-items-center justify-content-center justify-content-sm-center justify-content-md-end">
           <ul class="d-flex flex-row list-unstyled m-0">
 
             <!-- {{ --SVG ICONS-- }} -->
