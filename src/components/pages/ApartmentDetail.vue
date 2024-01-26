@@ -54,6 +54,14 @@ export default {
 
     //API INVIO EMAIL
     sendMailApi() {
+
+  this.validateName();
+  this.validateEmail();
+  this.validateText();
+
+  if (this.errors.name || this.errors.email_sender || this.errors.text) {
+    return;
+  }
       this.loading = true;
       const mail = {
         name: this.name,
