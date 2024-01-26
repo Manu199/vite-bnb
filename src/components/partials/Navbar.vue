@@ -34,7 +34,7 @@ export default {
               <router-link :to="{ name: 'AdvancedSearch' }">Ricerca Avanzata</router-link>
             </li>
 
-            <li class=" collapse dropdown navbar-collapse d-flex justify-content-end hover-fix" >
+            <li class=" collapse dropdown navbar-collapse d-flex justify-content-end hover-fix me-0" >
       
               <a id="navbarDropdown"
               class="nav-link dropdown-toggle user-guest"
@@ -206,6 +206,7 @@ export default {
         background-color: $primaryColor;
         border-radius: 5px;
         color: white !important;
+        margin-right: 0;
 
         &:hover{
           color: white !important;
