@@ -55,13 +55,13 @@ export default {
     //API INVIO EMAIL
     sendMailApi() {
 
-  this.validateName();
-  this.validateEmail();
-  this.validateText();
+      this.validateName();
+      this.validateEmail();
+      this.validateText();
 
-  if (this.errors.name || this.errors.email_sender || this.errors.text) {
-    return;
-  }
+      if (this.errors.name || this.errors.email_sender || this.errors.text) {
+        return;
+      }
       this.loading = true;
       const mail = {
         name: this.name,
@@ -202,26 +202,27 @@ export default {
 
         </div>
 
+        <!-- SERVICES -->
         <div class="info-services row py-4 pe-4 border-bottom border-top w-75">
           <span v-html="service.name" v-for="(service, index) in servicesToShow" :key="index" class="col-lg-6"></span>
+
+          <div class="buttons">
+            <button v-if="!showAllServices && (apartment.services || []).length > 5" @click="showAllServices = true"
+              class="btn rounded-0 custom-btn-primary mt-2 text-start">Mostra Altro...</button>
+            <button v-if="showAllServices" @click="showAllServices = false"
+              class="btn rounded-0 custom-btn-primary mt-2">Mostra Meno</button>
+          </div>
+
         </div>
 
-        <button v-if="!showAllServices && (apartment.services || []).length > 5" @click="showAllServices = true"
-          class="btn btn-primary mt-2">Mostra Altro...</button>
-        <button v-if="showAllServices" @click="showAllServices = false" class="btn btn-primary mt-2">Mostra Meno</button>
-
-
+        <!-- DESCRIPTION -->
         <div class="description-apartment py-3">
           <p>{{ apartment.description }}</p>
         </div>
 
-        <div class="map" id="map">
-          <div id="marker"></div>
-        </div>
       </div>
 
-
-      <div class="info-seller col-md-4 mt-md-0 mt-3">
+      <div class="info-seller col-md-12 col-lg-4 mt-md-0 mt-3">
         <div class="card mb-3 d-flex flex-column">
 
           <!-- IMMAGINE/NOME COGNOME -->
@@ -232,7 +233,7 @@ export default {
             <div class="text">
               <p class=" mb-0 text-user">{{ apartment.user ? apartment.user.name : 'Utente' }} {{ apartment.user ?
                 apartment.user.lastname : 'Anonimo' }}</p>
-              <p class="mb-0 numero-user">{{ apartment.user ? apartment.user.email : 'Utente' }}</p>
+              <p class="mb-0 mail-user">{{ apartment.user ? apartment.user.email : 'Utente' }}</p>
             </div>
           </div>
 
@@ -272,8 +273,8 @@ export default {
 
 
                 <!-- Button send message -->
-                <button class="btn" :class="{ 'btn-primary': !loading, 'btn-secondary': loading }" :disabled="loading"
-                  @click="sendMailApi">
+                <button class="btn button" :class="{ 'btn-primary': !loading, 'btn-secondary': loading }"
+                  :disabled="loading" @click="sendMailApi">
                   <span v-if="loading">
                     <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                     Caricamento...
@@ -300,6 +301,12 @@ export default {
         </div>
       </div>
 
+      <div class="row m-0">
+        <div class="map col-md-8 ms-xs-2" id="map">
+          <div id="marker"></div>
+        </div>
+      </div>
+
     </div>
   </div>
 </template>
@@ -309,25 +316,24 @@ export default {
 
 .container {
 
-  .img {
-    width: 80px;
-  }
+  .info-seller {
+    .img {
+      width: 80px;
+    }
 
-  .text-user {
-    font-size: 13px;
-  }
+    .text-user {
+      font-size: 13px;
+    }
 
-  .numero-user {
-    font-size: 10px;
-  }
+    .mail-user {
+      font-size: 10px;
+    }
 
-  .btn-text {
-    font-size: 100%;
   }
 
   .map {
     width: 100%;
-    height: 250px;
+    height: 350px;
   }
 
   #marker {
@@ -347,12 +353,32 @@ export default {
     height: 25px;
   }
 
-  button {
+  .button {
     background-color: $primaryColor;
     border-color: $primaryColor;
 
     &:hover {
       background-color: $secondaryColor;
+    }
+  }
+
+  .custom-btn-primary {
+    color: rgba(0, 0, 0, 0.822);
+    padding: 5px 0px !important;
+    margin: 0 10px;
+    font-size: medium;
+
+    &.active {
+      background-color: transparent;
+      color: black;
+      border-radius: 0;
+      box-shadow: 0 2px 0 0 #17c499;
+    }
+
+    &:hover {
+      color: black;
+      box-shadow: 0 2px 0 0 #17c499;
+      border-radius: 0px;
     }
   }
 
