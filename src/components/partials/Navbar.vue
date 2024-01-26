@@ -12,7 +12,7 @@ export default {
 
 <template>
 
-<header>
+<header class="header-fix">
   <nav class="navbar">
     <div class="container">
 
@@ -112,7 +112,18 @@ export default {
 <style lang="scss" scoped>
 @use '../../scss/main.scss' as *;
 
-  .logo-navbar {
+
+.header-fix {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.logo-navbar {
     img {
       width: 120px;
     }
@@ -156,8 +167,6 @@ export default {
           color: black;
           box-shadow: 0 2px 0 0 $primaryColor;
           border-radius: 0px;
-
-
         }
         
         a{

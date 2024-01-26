@@ -208,9 +208,9 @@ export default {
 
           <div class="buttons">
             <button v-if="!showAllServices && (apartment.services || []).length > 5" @click="showAllServices = true"
-              class="btn rounded-0 custom-btn-primary mt-2 text-start">Mostra Altro...</button>
+              class="rounded-0 custom-btn-primary mt-2 text-start">Mostra altro...</button>
             <button v-if="showAllServices" @click="showAllServices = false"
-              class="btn rounded-0 custom-btn-primary mt-2">Mostra Meno</button>
+              class="rounded-0 custom-btn-primary mt-2">Mostra meno</button>
           </div>
 
         </div>
@@ -367,18 +367,22 @@ export default {
     padding: 5px 0px !important;
     margin: 0 10px;
     font-size: medium;
+    background-color: transparent;
+    border: none;
 
     &.active {
       background-color: transparent;
       color: black;
       border-radius: 0;
-      box-shadow: 0 2px 0 0 #17c499;
+      box-shadow: 0 2px 0 0 $primaryColor;
+      border: none;
     }
 
     &:hover {
       color: black;
-      box-shadow: 0 2px 0 0 #17c499;
+      box-shadow: 0 2px 0 0 $primaryColor;
       border-radius: 0px;
+      border: none;
     }
   }
 
