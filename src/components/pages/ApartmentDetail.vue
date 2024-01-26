@@ -28,7 +28,12 @@ export default {
       // MODAL message
       modalResultMessage: null,
       message: '',
+
+      //SPINNER message
       loading: false,
+
+      //SERVICES
+      showAllServices: false,
 
     }
   },
@@ -81,7 +86,6 @@ export default {
           this.loading = false;
           this.openModal();
         });
-
     },
 
     openModal() {
@@ -156,7 +160,15 @@ export default {
     // Inizializzo una nuova istanza di una modal di Bootstrap
     // L'istanza è associata all'elemento con l'ID 'modal-result-message' nel template HTML
     this.modalResultMessage = new bootstrap.Modal('#modal-result-message', {})
-  }
+  },
+  computed: {
+    servicesToShow() {
+      return this.showAllServices ? (this.apartment.services || []) : (this.apartment.services || []).slice(0, 5);
+    },
+    hasMoreServices() {
+      return this.showAllServices && (this.apartment.services || []).length > 5;
+    },
+  },
 
 };
 </script>
@@ -183,9 +195,12 @@ export default {
         </div>
 
         <div class="info-services row py-4 pe-4 border-bottom border-top w-75">
-          <span v-html="service.name" v-for="(service, index) in this.apartment.services" :key="index"
-            class="col-lg-6"></span>
+          <span v-html="service.name" v-for="(service, index) in servicesToShow" :key="index" class="col-lg-6"></span>
         </div>
+
+        <button v-if="!showAllServices && (apartment.services || []).length > 5" @click="showAllServices = true"
+          class="btn btn-primary mt-2">Mostra Altro...</button>
+        <button v-if="showAllServices" @click="showAllServices = false" class="btn btn-primary mt-2">Mostra Meno</button>
 
 
         <div class="description-apartment py-3">
