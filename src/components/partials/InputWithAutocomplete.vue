@@ -87,4 +87,10 @@ export default {
     cursor: pointer;
   }
 
+  input{
+    padding: 14px;
+    border-radius: 30px;
+    padding-right: 60px;
+    padding-left: 22px;
+  }
 </style>

@@ -70,32 +70,14 @@ export default {
       
       <!-- Address -->
       <div class="mb-3">
-        <div class="container d-flex">
-          <InputWithAutocomplete />
-
+        <div class="d-flex position-relative">  
+          <InputWithAutocomplete/>
+          <button @click="store.toSearch" class="btn position-absolute btn-search"><i class="fa-solid fa-magnifying-glass"></i></button>
         </div>
       </div>
 
         <!-- CHECKBOX ----------------------------------------------------------- -->
-        <div class="checkbox-wrapper-12">
-          <div class="cbx">
-            <input id="cbx-12" type="checkbox"/>
-            <label for="cbx-12"></label>
-            <svg width="15" height="14" viewbox="0 0 15 14" fill="none">
-              <path d="M2 8.36364L6.23077 12L13 2"></path>
-            </svg>
-          </div>
-          <!-- Gooey-->
-          <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
-            <defs>
-              <filter id="goo-12">
-                <fegaussianblur in="SourceGraphic" stddeviation="4" result="blur"></fegaussianblur>
-                <fecolormatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -7" result="goo-12"></fecolormatrix>
-                <feblend in="SourceGraphic" in2="goo-12"></feblend>
-              </filter>
-            </defs>
-          </svg>
-        </div>
+        
         <!-- CHECKBOX ----------------------------------------------------------- -->
 
       <!-- Button trigger modal -->
@@ -169,17 +151,33 @@ export default {
                     
                     <div class="row">
                       <div id="div-services" v-for="service in arrayServices" :key="service.id" class="col-6 align-items-center d-flex">
-                          <label class="container-services">
-                            <span class="form-check-label single-line-ellipsis" :for="'service-' + service.id" v-html="service.name"></span>
-                            <input
-                              @click="store.toSearch"
-                              v-model="store.selectedServices"
-                              class="form-check-input"
-                              type="checkbox"
-                              :id="'service-' + service.id"
-                              :value="service.id">
-                              <span class="checkmark"></span>
-                          </label>
+                          <div class="container-services d-flex mb-2">
+                            <div class="checkbox-wrapper-12">
+                              <div class="cbx">
+                                <input @click="store.toSearch"
+                                v-model="store.selectedServices"
+                                class="form-check-input "
+                                type="checkbox"
+                                :id="'service-' + service.id"
+                                :value="service.id"/>
+                                <label :for="'service-' + service.id"></label>
+                                <svg width="15" height="14" viewbox="0 0 15 14" fill="none">
+                                  <path d="M2 8.36364L6.23077 12L13 2"></path>
+                                </svg>
+                              </div>
+                              <!-- Gooey-->
+                              <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+                                <defs>
+                                  <filter id="goo-12">
+                                    <fegaussianblur in="SourceGraphic" stddeviation="4" result="blur"></fegaussianblur>
+                                    <fecolormatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -7" result="goo-12"></fecolormatrix>
+                                    <feblend in="SourceGraphic" in2="goo-12"></feblend>
+                                  </filter>
+                                </defs>
+                              </svg>
+                            </div>
+                            <label class="form-check-label single-line-ellipsis ms-2" :for="'service-' + service.id" v-html="service.name"></label>
+                          </div>
                       </div>
                     </div>
                 </div>
@@ -205,9 +203,11 @@ export default {
 @use '../../scss/main.scss' as *;
 
 h1{
-  color: #016A70;
-  font-size: 5%;
+  color: $primaryColor;
+  font-size: 100%;
 }
+
+
 
 
 @media screen and (min-width: 990px) {
@@ -237,14 +237,14 @@ h1{
 
   #text-custom   {
     font-size: 17px;
-    color: #016A70;
+    color: $primaryColor;
     font-weight: 900;
     
   }
 
   #range{
     width: 94%;
-    color: #016A70;
+    color: $primaryColor;
     justify-self: flex-start;
     margin-right: 1rem;
   }
@@ -268,14 +268,14 @@ h1{
     appearance: none;
     width: 25px;
     height: 25px;
-    background: #016A70;
+    background: $primaryColor;
     cursor: pointer;
     border-radius: 50%;
   }
   .slider::-moz-range-thumb {
     width: 25px;
     height: 25px;
-    background: #016A70;
+    background: $primaryColor;
     border-radius: 50%;
     // cursor: pointer; 
   }
@@ -284,27 +284,27 @@ h1{
 
 
   .btn-small-custom {
-    border: 1px solid #016A70;
+    border: 1px solid $primaryColor;
 
     &:hover{
-      background-color: #016A70;
+      background-color: $primaryColor;
       color: white;
     }
   }
 }
 
 input[type="radio"][name="radio-rooms"]:checked + label {
-    background-color: #016A70;
+    background-color: $primaryColor;
     color: white;
 }
 
 input[type="radio"][name="radio-beds"]:checked + label {
-    background-color: #016A70;
+    background-color: $primaryColor;
     color: white;
 }
 
 .active {
-      background-color: #016A70;
+      background-color: $primaryColor;
       color: white;
       }
 
@@ -317,118 +317,4 @@ input[type="radio"][name="radio-beds"]:checked + label {
   width: 100%;
 }
 
-// CHECKBOX 
-.checkbox-wrapper-12 {
-    position: relative;
-  }
-  .checkbox-wrapper-12 > svg {
-    position: absolute;
-    top: -130%;
-    left: -170%;
-    width: 110px;
-    pointer-events: none;
-  }
-  .checkbox-wrapper-12 * {
-    box-sizing: border-box;
-  }
-  .checkbox-wrapper-12 input[type="checkbox"] {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    -webkit-tap-highlight-color: transparent;
-    cursor: pointer;
-    margin: 0;
-  }
-  .checkbox-wrapper-12 input[type="checkbox"]:focus {
-    outline: 0;
-  }
-  .checkbox-wrapper-12 .cbx {
-    width: 24px;
-    height: 24px;
-    top: calc(50vh - 12px);
-    left: calc(50vw - 12px);
-  }
-  .checkbox-wrapper-12 .cbx input {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 24px;
-    height: 24px;
-    border: 2px solid #bfbfc0;
-    border-radius: 50%;
-  }
-  .checkbox-wrapper-12 .cbx label {
-    width: 24px;
-    height: 24px;
-    background: none;
-    border-radius: 50%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    transform: translate3d(0, 0, 0);
-    pointer-events: none;
-  }
-  .checkbox-wrapper-12 .cbx svg {
-    position: absolute;
-    top: 5px;
-    left: 4px;
-    z-index: 1;
-    pointer-events: none;
-  }
-  .checkbox-wrapper-12 .cbx svg path {
-    stroke: #fff;
-    stroke-width: 3;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    stroke-dasharray: 19;
-    stroke-dashoffset: 19;
-    transition: stroke-dashoffset 0.3s ease;
-    transition-delay: 0.2s;
-  }
-  .checkbox-wrapper-12 .cbx input:checked + label {
-    animation: splash-12 0.6s ease forwards;
-  }
-  .checkbox-wrapper-12 .cbx input:checked + label + svg path {
-    stroke-dashoffset: 0;
-  }
-  @-moz-keyframes splash-12 {
-    40% {
-      background: #866efb;
-      box-shadow: 0 -18px 0 -8px #866efb, 16px -8px 0 -8px #866efb, 16px 8px 0 -8px #866efb, 0 18px 0 -8px #866efb, -16px 8px 0 -8px #866efb, -16px -8px 0 -8px #866efb;
-    }
-    100% {
-      background: #866efb;
-      box-shadow: 0 -36px 0 -10px transparent, 32px -16px 0 -10px transparent, 32px 16px 0 -10px transparent, 0 36px 0 -10px transparent, -32px 16px 0 -10px transparent, -32px -16px 0 -10px transparent;
-    }
-  }
-  @-webkit-keyframes splash-12 {
-    40% {
-      background: #866efb;
-      box-shadow: 0 -18px 0 -8px #866efb, 16px -8px 0 -8px #866efb, 16px 8px 0 -8px #866efb, 0 18px 0 -8px #866efb, -16px 8px 0 -8px #866efb, -16px -8px 0 -8px #866efb;
-    }
-    100% {
-      background: #866efb;
-      box-shadow: 0 -36px 0 -10px transparent, 32px -16px 0 -10px transparent, 32px 16px 0 -10px transparent, 0 36px 0 -10px transparent, -32px 16px 0 -10px transparent, -32px -16px 0 -10px transparent;
-    }
-  }
-  @-o-keyframes splash-12 {
-    40% {
-      background: #866efb;
-      box-shadow: 0 -18px 0 -8px #866efb, 16px -8px 0 -8px #866efb, 16px 8px 0 -8px #866efb, 0 18px 0 -8px #866efb, -16px 8px 0 -8px #866efb, -16px -8px 0 -8px #866efb;
-    }
-    100% {
-      background: #866efb;
-      box-shadow: 0 -36px 0 -10px transparent, 32px -16px 0 -10px transparent, 32px 16px 0 -10px transparent, 0 36px 0 -10px transparent, -32px 16px 0 -10px transparent, -32px -16px 0 -10px transparent;
-    }
-  }
-  @keyframes splash-12 {
-    40% {
-      background: #866efb;
-      box-shadow: 0 -18px 0 -8px #866efb, 16px -8px 0 -8px #866efb, 16px 8px 0 -8px #866efb, 0 18px 0 -8px #866efb, -16px 8px 0 -8px #866efb, -16px -8px 0 -8px #866efb;
-    }
-    100% {
-      background: #866efb;
-      box-shadow: 0 -36px 0 -10px transparent, 32px -16px 0 -10px transparent, 32px 16px 0 -10px transparent, 0 36px 0 -10px transparent, -32px 16px 0 -10px transparent, -32px -16px 0 -10px transparent;
-    }
-  }
 </style>
