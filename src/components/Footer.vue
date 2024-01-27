@@ -6,7 +6,7 @@ export default {
 
 <template>
   <footer>
-    <div class="container mt-5 mb-3">
+    <div class="container mt-4">
       <div class="row">
         <!-- LOGO -->
         <div class="logo-footer col-12 col-xs-4 col-md-4 mb-3 mb-sm-0 d-flex justify-content-center align-items-center justify-content-sm-center justify-content-md-start logo-footer">

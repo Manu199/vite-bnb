@@ -15,14 +15,10 @@ export default {
 
 <template>
   <Header></Header>
-  <Main class="main"></Main>
+  <Main></Main>
   <Footer></Footer>
 </template>
 
 <style lang="scss">
   @import '../src/scss/main.scss';
-
-  .main {
-    min-height: calc(100vh - 225px);
-  }
 </style>
