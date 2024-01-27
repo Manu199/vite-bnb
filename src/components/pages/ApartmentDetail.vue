@@ -182,7 +182,7 @@ export default {
 </script>
 
 <template>
-  <div class="container mt-5">
+  <div class="container">
     <h3 class="text-black mb-4">{{ this.apartment.title }}</h3>
 
     <div class=" d-flex img-container">
