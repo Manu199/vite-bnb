@@ -42,7 +42,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url(../../../public/image-verde.jpeg);
+  background-image: url(/image-verde.jpeg);
   background-size: cover;
   background-position: center;
 }

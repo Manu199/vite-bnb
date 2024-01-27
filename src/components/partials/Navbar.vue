@@ -19,10 +19,10 @@ export default {
       <nav class="navbar navbar-expand w-100 justify-content-between">
         <!-- Logo -->
               <router-link class="nav-link btn fw-bold" :to = "{ name: 'Home' }">
-                  <img class="logo-header" src="/logo (1).png" alt="logo (1).png" />
+                  <img class="logo-header" src="/logo.png" alt="logo" />
               </router-link>
   
-        <div class="d-flex d-none d-lg-block" >
+        <div class="d-flex d-none d-lg-block">
     
           <ul class="navbar-nav ">
 
@@ -123,24 +123,22 @@ export default {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-.logo-navbar {
-    img {
-      width: 120px;
-    }
-  }
- 
-
-  
+nav{
   .logo-header {
     width: 120px;
   }
-  .navbar-nav {
 
+}
+  
+  .navbar-nav {
     display: flex;
     flex-direction: row;
 
+    li.hover-fix{
+      margin: 0;
+    }
+
     li.hover-fix:hover {
-      color: white;
       box-shadow: none;
     }
 
@@ -211,7 +209,7 @@ export default {
     }
 
     .user-guest {
-        padding: 5px 10px;
+        padding: 5px 10px !important;
         background-color: $primaryColor;
         border-radius: 5px;
         color: white !important;
@@ -219,6 +217,10 @@ export default {
 
         &:hover{
           color: white !important;
+        }
+
+        &::after{
+          margin-left: 0.48em;
         }
     }
   } 

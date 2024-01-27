@@ -10,7 +10,7 @@ export default {
       <div class="row">
         <!-- LOGO -->
         <div class="logo-footer col-12 col-xs-4 col-md-4 mb-3 mb-sm-0 d-flex justify-content-center align-items-center justify-content-sm-center justify-content-md-start logo-footer">
-          <img class="img-fluid" src="../../public/logo (1).png" alt="" />
+          <img class="img-fluid" src="/logo.png" alt="logo" />
         </div>
 
         <!-- PRIVACY -->
@@ -169,17 +169,6 @@ ul {
       color: $text_grey;
     }
   }
-}
-
-html {
-  box-sizing: border-box;
-  background: #f3f3f3;
-}
-
-*,
-*:after,
-*:before {
-  box-sizing: inherit;
 }
 
 .clip {

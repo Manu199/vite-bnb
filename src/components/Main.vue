@@ -17,7 +17,8 @@ export default {
 
 main{
   margin-top: 100px;
-  min-height: calc(100vh - 225px);
+  padding-top: 32px;
+  min-height: calc(100vh - 205px);
 }
 
 </style>
