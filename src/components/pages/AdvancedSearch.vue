@@ -56,17 +56,11 @@ export default {
   },
   
 };
-
-
-
-
-
 </script>
 
 <template>
-  <div class="detail">
+  <div class="advanced-search">
     <div class="container">
-      
       <!-- Address -->
         <div class="mb-3 d-flex align-items-center">
           <div class="d-flex position-relative w-100 h-100">  
@@ -75,12 +69,7 @@ export default {
           </div>
           <!-- Button trigger modal -->
           <button class="btn btn-custom-primary filter-button" data-bs-toggle="modal" data-bs-target="#exampleModal"><span><i class="fa-solid fa-sliders"></i> Filtri</span></button> 
-
         </div>
-
-        
-
-      
 
       <!-- Modal -->
       <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -88,99 +77,100 @@ export default {
           <div class="modal-content">
             <div class="modal-header">
               <h1 class="modal-title fs-5" id="exampleModalLabel">Filtri</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                    <!-- Radius -->
-                <div class="mb-3 w-100">
-                    <span id="text-custom" for="radius">Distanza: </span>
-                    <span id="text-custom">{{ store.paramsToSearch.radius }} km</span>
-                    <br>
-                    <input id="range" v-model="store.paramsToSearch.radius" @click="store.toSearch" type="range" class="form-control-range slider" min="1" max="50" >
-                </div>
+              <div class="overflow-hidden">
 
-                <!-- Rooms -->
-                <div class="mb-3">
-                    <span id="text-custom">Stanze:</span>
-                    <div class="d-flex w-100 align-items-center">
-                      <div>
-                        <input @click="store.toSearch" v-model="store.paramsToSearch.minRooms" :value="0" type="radio" class="btn-check" name="radio-rooms" id="btnradio-room" autocomplete="off" checked>
-                        <label id="myButton" class="btn btn-small-custom me-2" for="btnradio-room">Qualsiasi</label>
+                      <!-- Radius -->
+                  <div class="mb-3 w-100">
+                      <span id="text-custom" for="radius">Distanza: </span>
+                      <span id="text-custom">{{ store.paramsToSearch.radius }} km</span>
+                      <br>
+                      <input id="range" v-model="store.paramsToSearch.radius" @click="store.toSearch" type="range" class="form-control-range slider" min="1" max="50" >
+                  </div>
+
+                  <!-- Rooms -->
+                  <div class="mb-3">
+                      <span id="text-custom">Stanze:</span>
+                      <div class="d-flex w-100 align-items-center">
+                        <div>
+                          <input @click="store.toSearch" v-model="store.paramsToSearch.minRooms" :value="0" type="radio" class="btn-check" name="radio-rooms" id="btnradio-room" autocomplete="off" checked>
+                          <label id="myButton" class="btn btn-small-custom me-2" for="btnradio-room">Qualsiasi</label>
+                        </div>
+
+                        <div v-for="index in 5" :key="index">
+                          <input @click="store.toSearch" v-model="store.paramsToSearch.minRooms" :value="index" type="radio" class="btn-check" name="radio-rooms" :id="'btnradio-room-' + index" autocomplete="off">
+                          <label class="btn btn-small-custom me-2" :for="'btnradio-room-' + index">{{ index }}</label>
+                        </div>
+
+                        <div>
+                          <input @click="store.toSearch" v-model="store.paramsToSearch.minRooms" :value="6" type="radio" class="btn-check" name="radio-rooms" id="btnradio-room-6" autocomplete="off">
+                          <label class="btn btn-small-custom me-2" for="btnradio-room-6">6+</label>
+                        </div>
+
                       </div>
+                  </div>
 
-                      <div v-for="index in 5" :key="index">
-                        <input @click="store.toSearch" v-model="store.paramsToSearch.minRooms" :value="index" type="radio" class="btn-check" name="radio-rooms" :id="'btnradio-room-' + index" autocomplete="off">
-                        <label class="btn btn-small-custom me-2" :for="'btnradio-room-' + index">{{ index }}</label>
+                  <!-- Beds -->
+                  <div class="mb-3">
+                      <span id="text-custom">Letti:</span>
+                      <div class="d-flex w-100 align-items-center">
+
+                        <div>
+                          <input @click="store.toSearch" v-model="store.paramsToSearch.minBeds" :value="0" type="radio" class="btn-check" name="radio-beds" id="btnradio-bed" autocomplete="off" checked>
+                          <label class="btn btn-small-custom me-2" for="btnradio-bed">Qualsiasi</label>
+                        </div>
+
+                        <div v-for="index in 5" :key="index">
+                          <input @click="store.toSearch" v-model="store.paramsToSearch.minBeds" :value="index" type="radio" class="btn-check" name="radio-beds" :id="'btnradio-bed-' + index" autocomplete="off">
+                          <label class="btn btn-small-custom me-2" :for="'btnradio-bed-' + index">{{ index }}</label>
+                        </div>
+
+                        <div>
+                          <input @click="store.toSearch" v-model="store.paramsToSearch.minBeds" :value="6" type="radio" class="btn-check" name="radio-beds" id="btnradio-bed-6" autocomplete="off">
+                          <label class="btn btn-small-custom me-2" for="btnradio-bed-6">6+</label>
+                        </div>
                       </div>
+                  </div>
 
-                      <div>
-                        <input @click="store.toSearch" v-model="store.paramsToSearch.minRooms" :value="6" type="radio" class="btn-check" name="radio-rooms" id="btnradio-room-6" autocomplete="off">
-                        <label class="btn btn-small-custom me-2" for="btnradio-room-6">6+</label>
-                      </div>
-
-                    </div>
-                </div>
-
-                <!-- Beds -->
-                <div class="mb-3">
-                    <span id="text-custom">Letti:</span>
-                    <div class="d-flex w-100 align-items-center">
-
-                      <div>
-                        <input @click="store.toSearch" v-model="store.paramsToSearch.minBeds" :value="0" type="radio" class="btn-check" name="radio-beds" id="btnradio-bed" autocomplete="off" checked>
-                        <label class="btn btn-small-custom me-2" for="btnradio-bed">Qualsiasi</label>
-                      </div>
-
-                      <div v-for="index in 5" :key="index">
-                        <input @click="store.toSearch" v-model="store.paramsToSearch.minBeds" :value="index" type="radio" class="btn-check" name="radio-beds" :id="'btnradio-bed-' + index" autocomplete="off">
-                        <label class="btn btn-small-custom me-2" :for="'btnradio-bed-' + index">{{ index }}</label>
-                      </div>
-
-                      <div>
-                        <input @click="store.toSearch" v-model="store.paramsToSearch.minBeds" :value="6" type="radio" class="btn-check" name="radio-beds" id="btnradio-bed-6" autocomplete="off">
-                        <label class="btn btn-small-custom me-2" for="btnradio-bed-6">6+</label>
-                      </div>
-                    </div>
-                </div>
-
-                <!-- Services -->
-                <div class="mb-3">
-                    <span id="text-custom">Services:</span>
-                    
-                    <div class="row">
-                      <div id="div-services" v-for="service in arrayServices" :key="service.id" class="col-6 align-items-center d-flex">
-                          <div class="container-services d-flex mb-2">
-                            <div class="checkbox-wrapper-12">
-                              <div class="cbx">
-                                <input @click="store.toSearch"
-                                v-model="store.selectedServices"
-                                class="form-check-input "
-                                type="checkbox"
-                                :id="'service-' + service.id"
-                                :value="service.id"/>
-                                <label :for="'service-' + service.id"></label>
-                                <svg width="15" height="14" viewbox="0 0 15 14" fill="none">
-                                  <path d="M2 8.36364L6.23077 12L13 2"></path>
+                  <!-- Services -->
+                  <div class="mb-3">
+                      <span id="text-custom">Services:</span>
+                      
+                      <div class="row row-cols-1 row-cols-2">
+                        <div id="div-services" v-for="service in arrayServices" :key="service.id" class="col align-items-center d-flex">
+                            <div class="container-services d-flex mb-2">
+                              <div class="checkbox-wrapper-12">
+                                <div class="cbx">
+                                  <input @click="store.toSearch"
+                                  v-model="store.selectedServices"
+                                  class="form-check-input "
+                                  type="checkbox"
+                                  :id="'service-' + service.id"
+                                  :value="service.id"/>
+                                  <label :for="'service-' + service.id"></label>
+                                  <svg width="15" height="14" viewbox="0 0 15 14" fill="none">
+                                    <path d="M2 8.36364L6.23077 12L13 2"></path>
+                                  </svg>
+                                </div>
+                                <!-- Gooey-->
+                                <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+                                  <defs>
+                                    <filter id="goo-12">
+                                      <fegaussianblur in="SourceGraphic" stddeviation="4" result="blur"></fegaussianblur>
+                                      <fecolormatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -7" result="goo-12"></fecolormatrix>
+                                      <feblend in="SourceGraphic" in2="goo-12"></feblend>
+                                    </filter>
+                                  </defs>
                                 </svg>
                               </div>
-                              <!-- Gooey-->
-                              <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
-                                <defs>
-                                  <filter id="goo-12">
-                                    <fegaussianblur in="SourceGraphic" stddeviation="4" result="blur"></fegaussianblur>
-                                    <fecolormatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -7" result="goo-12"></fecolormatrix>
-                                    <feblend in="SourceGraphic" in2="goo-12"></feblend>
-                                  </filter>
-                                </defs>
-                              </svg>
+                              <label class="form-check-label single-line-ellipsis ms-2" :for="'service-' + service.id" v-html="service.name"></label>
                             </div>
-                            <label class="form-check-label single-line-ellipsis ms-2" :for="'service-' + service.id" v-html="service.name"></label>
-                          </div>
+                        </div>
                       </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-custom-primary" data-bs-dismiss="modal"> Conferma </button>
+                  </div>
+              </div>
             </div>
           </div>
         </div>
@@ -198,6 +188,11 @@ export default {
 
 <style lang="scss" scoped>
 @use '../../scss/main.scss' as *;
+
+
+.advanced-search{
+  padding-top: 40px;
+}
 
 h1{
   color: $primaryColor;
@@ -240,7 +235,7 @@ h1{
   }
 
   #range{
-    width: 94%;
+    width: 100%;
     color: $primaryColor;
     justify-self: flex-start;
     margin-right: 1rem;

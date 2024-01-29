@@ -188,130 +188,132 @@ export default {
 </script>
 
 <template>
-  <div class="container">
-    <h3 class="text-black mb-4">{{ this.apartment.title }}</h3>
+  <div class="detail">
+    <div class="container">
+      <h3 class="text-black mb-4">{{ this.apartment.title }}</h3>
 
-    <div class=" d-flex img-container">
-      <img :src="apartment.image_path" alt="" class="object-fit-cover border rounded w-100">
-    </div>
-
-    <div class="info-apartment row mt-3">
-      <div class="info-general col-md-8">
-        <div class="info-price">
-          <p class="fw-bold">&euro;{{ apartment.price }}/Notte</p>
-
-          <div class="info-rooms mb-4">
-            {{ apartment.num_of_bed }} letto/i &middot; {{ apartment.num_of_bathroom }} bagno/i &middot; {{
-              apartment.square_meters }} mq
-          </div>
-
-        </div>
-
-        <!-- SERVICES -->
-        <div class="info-services row py-4 pe-4 border-bottom border-top w-75">
-          <span v-html="service.name" v-for="(service, index) in servicesToShow" :key="index" class="col-lg-6"></span>
-
-          <div class="buttons">
-            <button v-if="!showAllServices && (apartment.services || []).length > 5" @click="showAllServices = true"
-              class="rounded-0 custom-btn-primary mt-2 text-start">Mostra altro...</button>
-            <button v-if="showAllServices" @click="showAllServices = false"
-              class="rounded-0 custom-btn-primary mt-2">Mostra meno</button>
-          </div>
-
-        </div>
-
-        <!-- DESCRIPTION -->
-        <div class="description-apartment py-3">
-          <p>{{ apartment.description }}</p>
-        </div>
-
+      <div class=" d-flex img-container">
+        <img :src="apartment.image_path" alt="" class="object-fit-cover border rounded w-100">
       </div>
 
-      <div class="info-seller col-md-12 col-lg-4 mt-md-0 mt-3">
-        <div class="card mb-3 d-flex flex-column">
+      <div class="info-apartment row mt-3">
+        <div class="info-general col-md-8">
+          <div class="info-price">
+            <p class="fw-bold">&euro;{{ apartment.price }}/Notte</p>
 
-          <!-- IMMAGINE/NOME COGNOME -->
-          <div class="info-user d-flex flex-nowrap p-3">
-            <div class="img">
-              <img :src="getUserImageUrl()" class="w-100 pe-3 object-fit-cover" alt="...">
+            <div class="info-rooms mb-4">
+              {{ apartment.num_of_bed }} letto/i &middot; {{ apartment.num_of_bathroom }} bagno/i &middot; {{
+                apartment.square_meters }} mq
             </div>
-            <div class="text">
-              <p class=" mb-0 text-user">{{ apartment.user ? apartment.user.name : 'Utente' }} {{ apartment.user ?
-                apartment.user.lastname : 'Anonimo' }}</p>
-              <p class="mb-0 mail-user">{{ apartment.user ? apartment.user.email : 'Utente' }}</p>
-            </div>
+
           </div>
 
-          <div class="body-card p-3">
-            <!-- FORM EMAIL-->
-            <form @submit.prevent="sendMailApi()">
-              <div class="formContent">
+          <!-- SERVICES -->
+          <div class="info-services row py-4 pe-4 border-bottom border-top w-75">
+            <span v-html="service.name" v-for="(service, index) in servicesToShow" :key="index" class="col-lg-6"></span>
 
-                <!-- NAME -->
-                <div class="mb-3">
-                  <label for="name" class="form-label me-3">Nome</label>
-                  <span class="badge text-bg-danger">{{ errors.name }}</span>
-                  <input v-model="name" @input="validateName" :class="nameValidationClass" type="text"
-                    class="form-control" id="name" name="name">
+            <div class="buttons">
+              <button v-if="!showAllServices && (apartment.services || []).length > 5" @click="showAllServices = true"
+                class="rounded-0 custom-btn-primary mt-2 text-start">Mostra altro...</button>
+              <button v-if="showAllServices" @click="showAllServices = false"
+                class="rounded-0 custom-btn-primary mt-2">Mostra meno</button>
+            </div>
 
-                </div>
+          </div>
 
-                <!-- EMAIL ADDRESS -->
-                <div class="mb-3">
-                  <label for="email_sender" class="form-label me-3">Indirizzo Email</label>
-                  <span class="badge text-bg-danger">{{ errors.email_sender }}</span>
-                  <input v-model="email_sender" @input="validateEmail" :class="emailValidationClass" type="email_sender"
-                    class="form-control" id="email_sender" name="email_sender">
+          <!-- DESCRIPTION -->
+          <div class="description-apartment py-3">
+            <p>{{ apartment.description }}</p>
+          </div>
 
-                </div>
+        </div>
 
-                <!-- TEXT MESSAGE -->
-                <div class="mb-3 d-flex flex-column justify-content-between">
-                  <label for="text" class="form-label m-0">Messaggio:</label>
-                  <div class="badge-message overflow-hidden">
-                    <span class="badge text-bg-danger">{{ errors.text }}</span>
-                  </div>
-                  <textarea v-model="text" @input="validateText" :class="textValidationClass" class="form-control mt-2"
-                    id="text" rows="5" name="text">
-                          </textarea>
-                </div>
+        <div class="info-seller col-md-12 col-lg-4 mt-md-0 mt-3">
+          <div class="card mb-3 d-flex flex-column">
 
-
-                <!-- Button send message -->
-                <button class="btn button" :class="{ 'btn-primary': !loading, 'btn-secondary': loading }"
-                  :disabled="loading" @click="sendMailApi">
-                  <span v-if="loading">
-                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                    Caricamento...
-                  </span>
-                  <span v-else>Invia</span>
-                </button>
+            <!-- IMMAGINE/NOME COGNOME -->
+            <div class="info-user d-flex flex-nowrap p-3">
+              <div class="img">
+                <img :src="getUserImageUrl()" class="w-100 pe-3 object-fit-cover" alt="...">
               </div>
-            </form>
+              <div class="text">
+                <p class=" mb-0 text-user">{{ apartment.user ? apartment.user.name : 'Utente' }} {{ apartment.user ?
+                  apartment.user.lastname : 'Anonimo' }}</p>
+                <p class="mb-0 mail-user">{{ apartment.user ? apartment.user.email : 'Utente' }}</p>
+              </div>
+            </div>
+
+            <div class="body-card p-3">
+              <!-- FORM EMAIL-->
+              <form @submit.prevent="sendMailApi()">
+                <div class="formContent">
+
+                  <!-- NAME -->
+                  <div class="mb-3">
+                    <label for="name" class="form-label me-3">Nome</label>
+                    <span class="badge text-bg-danger">{{ errors.name }}</span>
+                    <input v-model="name" @input="validateName" :class="nameValidationClass" type="text"
+                      class="form-control" id="name" name="name">
+
+                  </div>
+
+                  <!-- EMAIL ADDRESS -->
+                  <div class="mb-3">
+                    <label for="email_sender" class="form-label me-3">Indirizzo Email</label>
+                    <span class="badge text-bg-danger">{{ errors.email_sender }}</span>
+                    <input v-model="email_sender" @input="validateEmail" :class="emailValidationClass" type="email_sender"
+                      class="form-control" id="email_sender" name="email_sender">
+
+                  </div>
+
+                  <!-- TEXT MESSAGE -->
+                  <div class="mb-3 d-flex flex-column justify-content-between">
+                    <label for="text" class="form-label m-0">Messaggio:</label>
+                    <div class="badge-message overflow-hidden">
+                      <span class="badge text-bg-danger">{{ errors.text }}</span>
+                    </div>
+                    <textarea v-model="text" @input="validateText" :class="textValidationClass" class="form-control mt-2"
+                      id="text" rows="5" name="text">
+                            </textarea>
+                  </div>
+
+
+                  <!-- Button send message -->
+                  <button class="btn button" :class="{ 'btn-primary': !loading, 'btn-secondary': loading }"
+                    :disabled="loading" @click="sendMailApi">
+                    <span v-if="loading">
+                      <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                      Caricamento...
+                    </span>
+                    <span v-else>Invia</span>
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- Modal -->
-      <div class="modal fade" id="modal-result-message" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-            <div class="modal-body">
-              {{ this.message }}
-            </div>
-            <div class="modal-footer">
-              <button @click="closeModal" type="button" class="btn btn-secondary">Close</button>
+        <!-- Modal -->
+        <div class="modal fade" id="modal-result-message" tabindex="-1">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-body">
+                {{ this.message }}
+              </div>
+              <div class="modal-footer">
+                <button @click="closeModal" type="button" class="btn btn-secondary">Close</button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="row m-0">
-        <div class="map col-md-8 ms-xs-2" id="map">
-          <div id="marker"></div>
+        <div class="row m-0">
+          <div class="map col-md-8 ms-xs-2" id="map">
+            <div id="marker"></div>
+          </div>
         </div>
-      </div>
 
+      </div>
     </div>
   </div>
 </template>
@@ -319,6 +321,10 @@ export default {
 <style lang="scss" scoped>
 @use '../../scss/partials/variables' as *;
 
+.detail{
+  padding-top: 40px;
+
+}
 .container {
 
   .info-seller {

@@ -22,7 +22,7 @@ export default {
                   <img class="logo-header" src="/logo.png" alt="logo" />
               </router-link>
   
-        <div class="d-flex d-none d-lg-block">
+        <div class="d-none d-lg-block">
     
           <ul class="navbar-nav ">
 
@@ -66,11 +66,11 @@ export default {
 
 
 
-        <div class="d-flex d-lg-none">
+        <div class="d-lg-none">
 
           <ul class="navbar-nav">
 
-            <li class="nav-item dropdown-style navbar-collapse d-flex justify-content-end hover-fix">
+            <li class="collapse dropdown navbar-collapse d-flex justify-content-end hover-fix">
 
                 <a id="navbarDropdown"
                 class="nav-link dropdown-toggle user-guest"

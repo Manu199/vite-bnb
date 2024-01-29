@@ -17,7 +17,7 @@ export default {
 
 main{
   margin-top: 80px;
-  min-height: calc(100vh - 205px);
+  min-height: calc(100vh - 184px);
 }
 
 </style>
