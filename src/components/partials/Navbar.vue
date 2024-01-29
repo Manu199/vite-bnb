@@ -49,7 +49,7 @@ export default {
               
               <div class="dropdown-menu dropdown-menu-end">
 
-                <a class="dropdown-item" href="http://127.0.0.1:8000">Area personale</a>
+                <a class="dropdown-item" href="http://127.0.0.1:8000/admin/apartment">Area personale</a>
     
                 <a class="dropdown-item" href="http://127.0.0.1:8000/register">Registrazione</a>
 
