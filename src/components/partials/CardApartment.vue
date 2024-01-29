@@ -15,7 +15,7 @@ export default {
         <div class="position-relative">
           <img :src="apartment.image_path" class="card-img-top rounded rounded-4" alt="Appartamento" />
           <div v-if="apartment.is_sponsored" class="sponsor-badge text-bg-warning">
-            <span>Consigliato</span>
+            <span>Sponsorizzato</span>
           </div>
         </div>
         <div class="card-body">
