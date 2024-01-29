@@ -80,7 +80,7 @@ export default {
         <div class="mb-3 d-flex align-items-center">
           <div class="d-flex position-relative w-100 h-100">  
             <InputWithAutocomplete/>
-            <button @click="store.toSearch" class="btn position-absolute btn-search"><i class="fa-solid fa-magnifying-glass"></i></button>
+            <button @click="store.toSearch" class="btn position-absolute btn-search z-2"><i class="fa-solid fa-magnifying-glass"></i></button>
           </div>
           <!-- Button trigger modal -->
           <button class="btn btn-custom-primary filter-button" data-bs-toggle="modal" data-bs-target="#exampleModal"><span><i class="fa-solid fa-sliders"></i> Filtri</span></button> 

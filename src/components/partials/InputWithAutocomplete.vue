@@ -37,7 +37,7 @@ export default {
     outOfInput(){
       setTimeout(() => {
         this.clearSuggest();
-      }, 100);
+      }, 150);
     },
 
     pressEnter(){
@@ -54,20 +54,22 @@ export default {
 </script>
 
 <template>
-  <div class="position-relative w-100">
+  <div class="position-relative w-100" id="container-search">
     <input
-      v-model="store.selectedAddress" 
+      v-model="store.selectedAddress"
+      @click="autoComplete" 
       @input="autoComplete" 
       @blur="outOfInput" 
       @keypress.enter="pressEnter"
       ref="inputAddress"
       class="form-control"
+      id="input-search"
       type="text"
       placeholder="Digita qui l'indirizzo">
     <ul class="list-group" id="list-search">
       <li
         @click="selectedFromSuggest(address)"
-        class="cursor-pointer list-group-item list-group-item-action list-group-item-secondary"
+        class="cursor-pointer list-group-item list-group-item-action"
         v-for="address in store.arraySuggest"
         :key="address.id">{{ address.address.freeformAddress }}</li>
     </ul>
@@ -75,22 +77,58 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+@use '../../scss/partials/variables' as *;
 
-  #list-search {
+  #container-search{
+    padding: 2px;
+  }
+
+  #input-search{
+    position: relative;
+    z-index: 2;
+
+    padding: 14px;
+    padding-right: 60px;
+    padding-left: 22px;
+
+    margin-left: 2px;
+    border: 0;
+    border-radius: 30px;
+  }
+
+  #list-search{
     position: absolute;
-    z-index: 3;
-    top: 100%;
+    z-index: 1;
+    top: 0;
     width: 100%;
+    padding-top: 55px;
+
+    border: var(--bs-border-width) solid var(--bs-border-color);
+    border-radius: 28px;
+    background-color: white;
+    overflow: hidden;
+
+    li{
+      border-radius: 0;
+      padding-left: 22px;
+    }
+
+    li:last-child {
+      border-bottom: none;
+    }
   }
 
   .cursor-pointer{
     cursor: pointer;
   }
 
-  input{
-    padding: 14px;
-    border-radius: 30px;
-    padding-right: 60px;
-    padding-left: 22px;
+  #input-search:focus{
+  border-color: var(--bs-border-color);
+  box-shadow: none;
+  
+    & + #list-search{
+      border-color: $primaryColor;
+      box-shadow: 0 0 0 0.25rem rgba($primaryColor, 0.25);
+    }
   }
 </style>

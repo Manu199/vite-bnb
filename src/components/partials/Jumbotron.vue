@@ -27,7 +27,7 @@ export default {
             </h2>
             <div class="position-relative input-search">
               <InputWithAutocomplete/>
-              <button @click="store.toSearch" class="btn btn-search position-absolute"><i class="fa-solid fa-magnifying-glass"></i></button>
+              <button @click="store.toSearch" class="btn btn-search position-absolute z-2"><i class="fa-solid fa-magnifying-glass"></i></button>
             </div>
           </div>
         </div>

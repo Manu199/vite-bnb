@@ -87,7 +87,7 @@ export default {
                 
                 <router-link class="dropdown-item" :to = "{ name: 'AdvancedSearch' }">Ricerca Avanzata</router-link>
 
-                <a class="dropdown-item" href="http://127.0.0.1:8000">Area personale</a>
+                <a class="dropdown-item" href="http://127.0.0.1:8000/admin/apartment">Area personale</a>
 
                 <a class="dropdown-item" href="http://127.0.0.1:8000/login">Login</a>
                 
