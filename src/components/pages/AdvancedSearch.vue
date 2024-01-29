@@ -66,24 +66,21 @@ export default {
 <template>
   <div class="detail">
     <div class="container">
-      <h1 class="mb-5 text-center">Ricerca avanzata</h1>
       
       <!-- Address -->
-      <div class="mb-3">
-        <div class="d-flex position-relative">  
-          <InputWithAutocomplete/>
-          <button @click="store.toSearch" class="btn position-absolute btn-search"><i class="fa-solid fa-magnifying-glass"></i></button>
+        <div class="mb-3 d-flex align-items-center">
+          <div class="d-flex position-relative w-100 h-100">  
+            <InputWithAutocomplete/>
+            <button @click="store.toSearch" class="btn position-absolute btn-search"><i class="fa-solid fa-magnifying-glass"></i></button>
+          </div>
+          <!-- Button trigger modal -->
+          <button class="btn btn-custom-primary filter-button" data-bs-toggle="modal" data-bs-target="#exampleModal"><span><i class="fa-solid fa-sliders"></i> Filtri</span></button> 
+
         </div>
-      </div>
 
-        <!-- CHECKBOX ----------------------------------------------------------- -->
         
-        <!-- CHECKBOX ----------------------------------------------------------- -->
 
-      <!-- Button trigger modal -->
-      <div class="mb-3">
-        <button class="btn btn-custom-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"><span><i class="fa-solid fa-sliders"></i> Filtri</span></button>
-      </div>
+      
 
       <!-- Modal -->
       <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

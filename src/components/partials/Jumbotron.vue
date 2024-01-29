@@ -16,7 +16,7 @@ export default {
 </script>
 
 <template>
-  <div class="position-relative mb-5">
+  <div class="position-relative">
     <div class="jumbotron">
       <div class="black-jumbotron"></div>
       <div class="container position-absolute">
@@ -74,8 +74,8 @@ export default {
 
 @media screen and (min-width: 576px) {
     .input-search { 
-        max-width: 1000px;
-        margin: 0  auto;
+        max-width: 516px;
+        margin: 0 auto;
     }
 }
 </style>
