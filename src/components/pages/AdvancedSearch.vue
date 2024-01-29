@@ -18,6 +18,15 @@ export default {
     }
   },
   methods: {
+
+    openService() {
+        const servicesContainer = document.getElementById('services-container');
+              servicesContainer.classList.toggle('reset-max-height');
+        const btnChevron = document.getElementById('btn-chevron');
+              btnChevron.classList.toggle('rotate-180');
+       
+    },
+    
     getServices(){
       axios.get(`http://127.0.0.1:8000/api/services`)
         .then(response => {
@@ -37,6 +46,7 @@ export default {
       const minRooms = this.$route.query.minRooms ?? 0;
       const minBeds = this.$route.query.minBeds ?? 0;
       const services = this.$route.query.services ?? '';
+      
 
       // Esegui il metodo nel servizio reactive per impostare i dati
       console.log('sto settando i parametri');
@@ -45,6 +55,7 @@ export default {
       this.store.apartmentsList = [];
       console.log('pulizia apartList', this.store.apartmentsList);
       this.store.toSearch();
+
     }
   },
   mounted() {
@@ -53,9 +64,13 @@ export default {
     // this.store.selectedAddress = localStorage.getItem("myInputValue") || "";
     this.getServices();
     this.setToSearch();
+   
+    
   },
   
 };
+
+
 </script>
 
 <template>
@@ -137,37 +152,43 @@ export default {
                   <!-- Services -->
                   <div class="mb-3">
                       <span id="text-custom">Services:</span>
-                      
-                      <div class="row row-cols-1 row-cols-2">
-                        <div id="div-services" v-for="service in arrayServices" :key="service.id" class="col align-items-center d-flex">
-                            <div class="container-services d-flex mb-2">
-                              <div class="checkbox-wrapper-12">
-                                <div class="cbx">
-                                  <input @click="store.toSearch"
-                                  v-model="store.selectedServices"
-                                  class="form-check-input "
-                                  type="checkbox"
-                                  :id="'service-' + service.id"
-                                  :value="service.id"/>
-                                  <label :for="'service-' + service.id"></label>
-                                  <svg width="15" height="14" viewbox="0 0 15 14" fill="none">
-                                    <path d="M2 8.36364L6.23077 12L13 2"></path>
+                      <div class="position-relative" id="services-container">
+
+                        <div class="row row-cols-1 row-cols-md-2" >
+                          <div id="div-services" v-for="service in arrayServices" :key="service.id" class="col align-items-center d-flex">
+                              <div class="container-services d-flex mb-2"  >
+                                <div class="checkbox-wrapper-12">
+                                  <div class="cbx">
+                                    <input @click="store.toSearch"
+                                    v-model="store.selectedServices"
+                                    class="form-check-input "
+                                    type="checkbox"
+                                    :id="'service-' + service.id"
+                                    :value="service.id"/>
+                                    <label :for="'service-' + service.id"></label>
+                                    <svg width="15" height="14" viewbox="0 0 15 14" fill="none">
+                                      <path d="M2 8.36364L6.23077 12L13 2"></path>
+                                    </svg>
+                                  </div>
+                                  <!-- Gooey-->
+                                  <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+                                    <defs>
+                                      <filter id="goo-12">
+                                        <fegaussianblur in="SourceGraphic" stddeviation="4" result="blur"></fegaussianblur>
+                                        <fecolormatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -7" result="goo-12"></fecolormatrix>
+                                        <feblend in="SourceGraphic" in2="goo-12"></feblend>
+                                      </filter>
+                                    </defs>
                                   </svg>
                                 </div>
-                                <!-- Gooey-->
-                                <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
-                                  <defs>
-                                    <filter id="goo-12">
-                                      <fegaussianblur in="SourceGraphic" stddeviation="4" result="blur"></fegaussianblur>
-                                      <fecolormatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 22 -7" result="goo-12"></fecolormatrix>
-                                      <feblend in="SourceGraphic" in2="goo-12"></feblend>
-                                    </filter>
-                                  </defs>
-                                </svg>
+                                <label class="form-check-label single-line-ellipsis ms-2" :for="'service-' + service.id" v-html="service.name"></label>
+                                
                               </div>
-                              <label class="form-check-label single-line-ellipsis ms-2" :for="'service-' + service.id" v-html="service.name"></label>
-                            </div>
-                        </div>
+                          </div>
+                        </div> 
+                        <div class="position-absolute bottom-0 end-0 cursor-pointer" @click="openService" id="btn-chevron">
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </div> 
                       </div>
                   </div>
               </div>
@@ -308,5 +329,17 @@ input[type="radio"][name="radio-beds"]:checked + label {
   top: 100%;
   width: 100%;
 }
+
+#services-container{
+    max-height: 160px;
+    overflow: hidden;
+    transition: max-height 1s ease-in-out;
+
+    &.reset-max-height {
+        max-height: 1000px;
+    }
+}
+
+
 
 </style>
