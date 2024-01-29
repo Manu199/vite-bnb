@@ -160,6 +160,12 @@ export default {
         this.textValidationClass = 'is-valid';
       }
     },
+    getUserImageUrl() {
+    const name = this.apartment.user ? this.apartment.user.name : '';
+    const lastname = this.apartment.user ? this.apartment.user.lastname : '';
+    const Color = '047458';
+    return `https://ui-avatars.com/api/?name=${name}+${lastname}&size=200&color=${Color}`;
+  },
   },
   mounted() {
     this.slug = this.$route.params.slug;
@@ -193,7 +199,6 @@ export default {
       <div class="info-general col-md-8">
         <div class="info-price">
           <p class="fw-bold">&euro;{{ apartment.price }}/Notte</p>
-          <p class="mb-0"><i class="fa-solid fa-circle fa-2xs me-1" style="color: #63E6BE;"></i>Disponibile</p>
 
           <div class="info-rooms mb-4">
             {{ apartment.num_of_bed }} letto/i &middot; {{ apartment.num_of_bathroom }} bagno/i &middot; {{
@@ -228,7 +233,7 @@ export default {
           <!-- IMMAGINE/NOME COGNOME -->
           <div class="info-user d-flex flex-nowrap p-3">
             <div class="img">
-              <img src="http://placebeard.it/640x480" class="w-100 pe-3 object-fit-cover" alt="...">
+              <img :src="getUserImageUrl()" class="w-100 pe-3 object-fit-cover" alt="...">
             </div>
             <div class="text">
               <p class=" mb-0 text-user">{{ apartment.user ? apartment.user.name : 'Utente' }} {{ apartment.user ?
