@@ -74,6 +74,7 @@ export default {
 <template>
   <div class="advanced-search">
     <div class="container">
+
       <!-- Address -->
         <div class="mb-3 d-flex align-items-center">
           <div class="d-flex position-relative w-100 h-100">  
@@ -196,23 +197,22 @@ export default {
       </div>
 
       <!-- AGGIUNTO ---------------------- -->
-      <p>{{ store.searchResultsAvailable ? 1 : 0 }}</p>
-        <div v-if="store.searchResultsAvailable">
+      <div v-if="store.searchResultsAvailable">
           <div v-if="store.apartmentsList.length > 0">
             <!-- Mostra i risultati della ricerca -->
             <div v-for="apartment in store.apartmentsList" :key="apartment.id">
               <!-- Visualizza le informazioni dell'appartamento -->
             </div>
           </div>
-          <div v-else>
+          <div v-else class="text-center mb-4 mt-5">
             <!-- Nessun risultato per la tua ricerca -->
-            <p>Fai la tua ricerca per trovare un appartamento.</p>
+            <h4>Fai la tua ricerca per trovare un appartamento.</h4>
           </div>
         </div>
 
-        <div v-else>
+        <div v-else class="text-center mb-4 mt-5">
           <!-- Mostra il messaggio "nessun risultato per la tua ricerca" -->
-          <p>Nessun risultato per la tua ricerca...</p>
+          <h4>Nessun risultato per la tua ricerca...</h4>
         </div>
 
     <!-- AGGIUNTO /---------------------- -->

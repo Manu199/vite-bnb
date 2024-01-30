@@ -21,14 +21,14 @@ export default {
 <template>
   <section class="lista_apartment py-4 d-flex flex-column container">
     
-    <h2 class="fw-bold">
+    <!-- <h2 class="fw-bold">
       <span>Lista appartamenti </span>
       <span v-if="apartmentsList.length !== 0">[{{ apartmentsList.length }}]</span>
-    </h2>
+    </h2> -->
     
-    <div v-if="apartmentsList.length === 0">
+    <!-- <div v-if="apartmentsList.length === 0">
       <h4>Nessun risultato...</h4>
-    </div>
+    </div> -->
 
     <div class="v-else">
       <div class="row">
