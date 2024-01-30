@@ -88,7 +88,7 @@ export default {
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <div class="overflow-hidden">
+              <div>
 
                       <!-- Radius -->
                   <div class="mb-3 w-100">
@@ -252,11 +252,7 @@ h1{
 
 .modal-body{
   max-height: 500px;
-  overflow-x: auto;
-
-  span{
-    margin-bottom: 20px;
-  }
+  overflow-y: auto;
 
   #text-custom   {
     font-size: 17px;
@@ -267,58 +263,17 @@ h1{
 
   #range{
     width: 100%;
+    border-radius: 3px;
     color: $primaryColor;
     justify-self: flex-start;
     margin-right: 1rem;
+    &:hover {
+      color: $secondaryColor;
+      transition: 0s;
+    }
   }
   
-  .slider {
-    -webkit-appearance: none;
-    appearance: none;
-    border-radius: 5px; 
-    height: 15px;
-    height: 10px;
-    background: #d3d3d3;
-    outline: none;
-    opacity: 0.7; 
-    -webkit-transition: .2s;
-    transition: opacity .2s;
-    cursor: pointer;
-    &:hover {
-    opacity: 1;
-    }
-  .slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 25px;
-    height: 25px;
-    background-color: $primaryColor;
-    cursor: pointer;
-    border-radius: 50%;
-  }
-  .slider::-moz-range-thumb {
-    width: 25px;
-    height: 25px;
-    background-color: $primaryColor;
-    border-radius: 50%;
-    // cursor: pointer; 
-  }
-//   input[type="range"]::-moz-range-thumb {
-//   background-color: #047458;
-//   border: 1px solid #047458; /* Aggiungi un bordo se necessario */
-//   width: 16px; /* Imposta la larghezza del thumb */
-//   height: 16px; /* Imposta l'altezza del thumb */
-//   cursor: pointer;
-//   }
-//   input[type="range"]::-webkit-slider-thumb {
-//   background-color: #047458;
-//   border: 1px solid #047458; /* Aggiungi un bordo se necessario */
-//   width: 16px; /* Imposta la larghezza del thumb */
-//   height: 16px; /* Imposta l'altezza del thumb */
-//   cursor: pointer;
-// }
 
-}
 .btn-big-custom{
     padding: 0;
     width: 80px;
