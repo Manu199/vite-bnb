@@ -153,10 +153,11 @@ export default {
                                   <div class="cbx">
                                     <input @click="store.toSearch"
                                     v-model="store.selectedServices"
-                                    class="form-check-input "
+                                    class="form-check-input"
                                     type="checkbox"
                                     :id="'service-' + service.id"
-                                    :value="service.id"/>
+                                    :value="service.id"
+                                    name="remember"/>
                                     <label :for="'service-' + service.id"></label>
                                     <svg width="15" height="14" viewbox="0 0 15 14" fill="none">
                                       <path d="M2 8.36364L6.23077 12L13 2"></path>
@@ -302,22 +303,22 @@ h1{
     border-radius: 50%;
     // cursor: pointer; 
   }
-  input[type="range"]::-moz-range-thumb {
-  background-color: #047458;
-  border: 1px solid #047458; /* Aggiungi un bordo se necessario */
-  width: 16px; /* Imposta la larghezza del thumb */
-  height: 16px; /* Imposta l'altezza del thumb */
-  cursor: pointer;
-  }
-  input[type="range"]::-webkit-slider-thumb {
-  background-color: #047458;
-  border: 1px solid #047458; /* Aggiungi un bordo se necessario */
-  width: 16px; /* Imposta la larghezza del thumb */
-  height: 16px; /* Imposta l'altezza del thumb */
-  cursor: pointer;
-}
-}
+//   input[type="range"]::-moz-range-thumb {
+//   background-color: #047458;
+//   border: 1px solid #047458; /* Aggiungi un bordo se necessario */
+//   width: 16px; /* Imposta la larghezza del thumb */
+//   height: 16px; /* Imposta l'altezza del thumb */
+//   cursor: pointer;
+//   }
+//   input[type="range"]::-webkit-slider-thumb {
+//   background-color: #047458;
+//   border: 1px solid #047458; /* Aggiungi un bordo se necessario */
+//   width: 16px; /* Imposta la larghezza del thumb */
+//   height: 16px; /* Imposta l'altezza del thumb */
+//   cursor: pointer;
+// }
 
+}
 .btn-big-custom{
     padding: 0;
     width: 80px;
