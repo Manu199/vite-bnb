@@ -8,7 +8,7 @@ export default {
 </script>
 
 <template>
-  <div class="col-lg-4 col-md-6 col-sm-6 mb-4">
+  <div class="col-12 col-md-6 col-lg-4  mb-4">
 
     <router-link :to="{ name: 'ApartmenDetail', params:{ slug: apartment.slug }}" class="text-decoration-none">
       <div class="card">
