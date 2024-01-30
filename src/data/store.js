@@ -15,6 +15,9 @@ export const store = reactive({
         minRooms: 0,
         minBeds: 0,
         services: '',
+        // AGGIUNTO ---------------------------
+        searchResultsAvailable: true,
+        // AGGIUNTO /---------------------------
     },
 
     setParamsToSearch: function(selectedAddress, lat, lon, radius, minRooms, minBeds, services) {
@@ -49,6 +52,13 @@ export const store = reactive({
                                     ...this.paramsToSearch,
                                 },
                             });
+                            // AGGIUNTO ---------------------------
+                            if (this.apartmentsList.length === 0) {
+                                store.searchResultsAvailable = false;
+                            } else {
+                                store.searchResultsAvailable = true;
+                            }
+                            // AGGIUNTO /---------------------------
                         })
                         .catch(error => {
                             console.error(error);

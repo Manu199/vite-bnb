@@ -1,6 +1,9 @@
 <script>
 import { store } from "../../data/store";
 import axios from "axios";
+// AGGIUNTO -----------------------
+import { computed } from "vue";
+// AGGIUNTO /-----------------------
 
 import ListaApartment from "../partials/ListaApartment.vue";
 import InputWithAutocomplete from "../partials/InputWithAutocomplete.vue";
@@ -64,9 +67,15 @@ export default {
     // this.store.selectedAddress = localStorage.getItem("myInputValue") || "";
     this.getServices();
     this.setToSearch();
-   
-    
   },
+
+  // AGGIUNTO -----------------------
+  computed: {
+    searchResultsAvailable() {
+    return store.searchResultsAvailable;
+    },
+  },
+  // AGGIUNTO /-----------------------
   
 };
 
@@ -197,6 +206,29 @@ export default {
         </div>
       </div>
 
+
+      <!-- AGGIUNTO ---------------------- -->
+
+        <div v-if="searchResultsAvailable">
+          <template v-if="store.apartmentsList.length > 0">
+            <!-- Mostra i risultati della ricerca -->
+            <div v-for="apartment in store.apartmentsList" :key="apartment.id">
+              <!-- Visualizza le informazioni dell'appartamento -->
+            </div>
+          </template>
+          <template v-else>
+            <!-- Nessun risultato per la tua ricerca -->
+            <p>Fai la tua ricerca per trovare un appartamento.</p>
+          </template>
+        </div>
+
+        <div v-else>
+          <!-- Mostra il messaggio "nessun risultato per la tua ricerca" -->
+          <p>Nessun risultato per la tua ricerca...</p>
+        </div>
+
+
+    <!-- AGGIUNTO /---------------------- -->
 
 
 
