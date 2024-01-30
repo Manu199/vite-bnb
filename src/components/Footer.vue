@@ -9,12 +9,12 @@ export default {
     <div class="container mt-4">
       <div class="row">
         <!-- LOGO -->
-        <div class="logo-footer col-12 col-xs-4 col-md-4 mb-3 mb-sm-0 d-flex justify-content-center align-items-center justify-content-sm-center justify-content-md-start logo-footer">
+        <div class="logo-footer col-12 col-xs-4 col-md-4 mb-2 mb-md-0 d-flex justify-content-center align-items-center justify-content-sm-center justify-content-md-start logo-footer">
           <img class="img-fluid" src="/logo.png" alt="logo" />
         </div>
 
         <!-- PRIVACY -->
-        <div class="col-12 col-xs-4 col-md-4 mb-3 mb-sm-0 d-flex justify-content-center align-items-center">
+        <div class="col-12 col-xs-4 col-md-4 d-flex justify-content-center align-items-center">
           <ul class="d-flex flex-row list-unstyled m-0 justify-content-center">
             <li>
               <a href="#">Privacy</a>

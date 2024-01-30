@@ -19,13 +19,7 @@ export default {
   },
   methods: {
 
-    openService() {
-        const servicesContainer = document.getElementById('services-container');
-              servicesContainer.classList.toggle('reset-max-height');
-        const btnChevron = document.getElementById('btn-chevron');
-              btnChevron.classList.toggle('rotate-180');
-       
-    },
+    
     
     getServices(){
       axios.get(`http://127.0.0.1:8000/api/services`)
@@ -83,7 +77,7 @@ export default {
             <button @click="store.toSearch" class="btn position-absolute btn-search z-2"><i class="fa-solid fa-magnifying-glass"></i></button>
           </div>
           <!-- Button trigger modal -->
-          <button class="btn btn-custom-primary filter-button" data-bs-toggle="modal" data-bs-target="#exampleModal"><span><i class="fa-solid fa-sliders"></i> Filtri</span></button> 
+          <button class="btn btn-custom-primary filter-button " data-bs-toggle="modal" data-bs-target="#exampleModal"><span><i class="fa-solid fa-sliders"></i> Filtri</span></button> 
         </div>
 
       <!-- Modal -->
@@ -91,7 +85,7 @@ export default {
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
             <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">Filtri</h1>
+              <h1 class="modal-title fs-5 fw-bold" id="exampleModalLabel">Personalizza la tua ricerca</h1>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -111,17 +105,17 @@ export default {
                       <div class="d-flex w-100 align-items-center">
                         <div>
                           <input @click="store.toSearch" v-model="store.paramsToSearch.minRooms" :value="0" type="radio" class="btn-check" name="radio-rooms" id="btnradio-room" autocomplete="off" checked>
-                          <label id="myButton" class="btn btn-small-custom me-2" for="btnradio-room">Qualsiasi</label>
+                          <label class="btn-big-custom me-2" for="btnradio-room">Qualsiasi</label>
                         </div>
 
                         <div v-for="index in 5" :key="index">
                           <input @click="store.toSearch" v-model="store.paramsToSearch.minRooms" :value="index" type="radio" class="btn-check" name="radio-rooms" :id="'btnradio-room-' + index" autocomplete="off">
-                          <label class="btn btn-small-custom me-2" :for="'btnradio-room-' + index">{{ index }}</label>
+                          <label class="btn-small-custom me-2" :for="'btnradio-room-' + index">{{ index }}</label>
                         </div>
 
                         <div>
                           <input @click="store.toSearch" v-model="store.paramsToSearch.minRooms" :value="6" type="radio" class="btn-check" name="radio-rooms" id="btnradio-room-6" autocomplete="off">
-                          <label class="btn btn-small-custom me-2" for="btnradio-room-6">6+</label>
+                          <label class="btn-small-custom me-2" for="btnradio-room-6">6+</label>
                         </div>
 
                       </div>
@@ -134,17 +128,17 @@ export default {
 
                         <div>
                           <input @click="store.toSearch" v-model="store.paramsToSearch.minBeds" :value="0" type="radio" class="btn-check" name="radio-beds" id="btnradio-bed" autocomplete="off" checked>
-                          <label class="btn btn-small-custom me-2" for="btnradio-bed">Qualsiasi</label>
+                          <label class="btn-big-custom me-2" for="btnradio-bed">Qualsiasi</label>
                         </div>
 
                         <div v-for="index in 5" :key="index">
                           <input @click="store.toSearch" v-model="store.paramsToSearch.minBeds" :value="index" type="radio" class="btn-check" name="radio-beds" :id="'btnradio-bed-' + index" autocomplete="off">
-                          <label class="btn btn-small-custom me-2" :for="'btnradio-bed-' + index">{{ index }}</label>
+                          <label class="btn-small-custom me-2" :for="'btnradio-bed-' + index">{{ index }}</label>
                         </div>
 
                         <div>
                           <input @click="store.toSearch" v-model="store.paramsToSearch.minBeds" :value="6" type="radio" class="btn-check" name="radio-beds" id="btnradio-bed-6" autocomplete="off">
-                          <label class="btn btn-small-custom me-2" for="btnradio-bed-6">6+</label>
+                          <label class="btn-small-custom me-2" for="btnradio-bed-6">6+</label>
                         </div>
                       </div>
                   </div>
@@ -152,7 +146,6 @@ export default {
                   <!-- Services -->
                   <div class="mb-3">
                       <span id="text-custom">Services:</span>
-                      <div class="position-relative" id="services-container">
 
                         <div class="row row-cols-1 row-cols-md-2" >
                           <div id="div-services" v-for="service in arrayServices" :key="service.id" class="col align-items-center d-flex">
@@ -186,10 +179,6 @@ export default {
                               </div>
                           </div>
                         </div> 
-                        <div class="position-absolute bottom-0 end-0 cursor-pointer" @click="openService" id="btn-chevron">
-                            <i class="fa-solid fa-chevron-down"></i>
-                        </div> 
-                      </div>
                   </div>
               </div>
             </div>
@@ -225,13 +214,13 @@ h1{
 
 @media screen and (min-width: 990px) {
     .modal-dialog {
-    max-width: 60%;
+    max-width: 50%;
   }
 }
 @media only screen and (min-width: 768px) and (max-width: 990px) {
 
     .modal-dialog {
-    max-width: 80%;
+    max-width: 70%;
   }
 }
 @media screen and (min-width:576px) and (max-width: 768px) {
@@ -242,7 +231,10 @@ h1{
 }
 
 
+
 .modal-body{
+  max-height: 500px;
+  overflow-x: auto;
 
   span{
     margin-bottom: 20px;
@@ -273,6 +265,7 @@ h1{
     opacity: 0.7; 
     -webkit-transition: .2s;
     transition: opacity .2s;
+    cursor: pointer;
     &:hover {
     opacity: 1;
     }
@@ -281,24 +274,59 @@ h1{
     appearance: none;
     width: 25px;
     height: 25px;
-    background: $primaryColor;
+    background-color: $primaryColor;
     cursor: pointer;
     border-radius: 50%;
   }
   .slider::-moz-range-thumb {
     width: 25px;
     height: 25px;
-    background: $primaryColor;
+    background-color: $primaryColor;
     border-radius: 50%;
     // cursor: pointer; 
   }
-  
+  input[type="range"]::-moz-range-thumb {
+  background-color: #047458;
+  border: 1px solid #047458; /* Aggiungi un bordo se necessario */
+  width: 16px; /* Imposta la larghezza del thumb */
+  height: 16px; /* Imposta l'altezza del thumb */
+  cursor: pointer;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+  background-color: #047458;
+  border: 1px solid #047458; /* Aggiungi un bordo se necessario */
+  width: 16px; /* Imposta la larghezza del thumb */
+  height: 16px; /* Imposta l'altezza del thumb */
+  cursor: pointer;
+}
 }
 
+.btn-big-custom{
+    padding: 0;
+    width: 80px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 32px;
+    border: 1px solid #047458;
+    cursor: pointer;
+    &:hover{
+      background-color: $primaryColor;
+      color: white;
+    }
+}
 
   .btn-small-custom {
     border: 1px solid $primaryColor;
-
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    cursor: pointer;
     &:hover{
       background-color: $primaryColor;
       color: white;
@@ -328,16 +356,6 @@ input[type="radio"][name="radio-beds"]:checked + label {
   z-index: 3;
   top: 100%;
   width: 100%;
-}
-
-#services-container{
-    max-height: 160px;
-    overflow: hidden;
-    transition: max-height 1s ease-in-out;
-
-    &.reset-max-height {
-        max-height: 1000px;
-    }
 }
 
 
