@@ -49,7 +49,7 @@ export default {
       this.store.apartmentsList = [];
       console.log('pulizia apartList', this.store.apartmentsList);
       this.store.toSearch();
-
+      this.store.searchResultsAvailable = true;
     }
   },
   mounted() {
@@ -58,10 +58,8 @@ export default {
     // this.store.selectedAddress = localStorage.getItem("myInputValue") || "";
     this.getServices();
     this.setToSearch();
-   
-    
   },
-  
+
 };
 
 
@@ -70,6 +68,7 @@ export default {
 <template>
   <div class="advanced-search">
     <div class="container">
+
       <!-- Address -->
         <div class="mb-3 d-flex align-items-center">
           <div class="d-flex position-relative w-100 h-100">  
@@ -186,8 +185,26 @@ export default {
         </div>
       </div>
 
+      <!-- AGGIUNTO ---------------------- -->
+      <div v-if="store.searchResultsAvailable">
+          <div v-if="store.apartmentsList.length > 0">
+            <!-- Mostra i risultati della ricerca -->
+            <div v-for="apartment in store.apartmentsList" :key="apartment.id">
+              <!-- Visualizza le informazioni dell'appartamento -->
+            </div>
+          </div>
+          <div v-else class="text-center mb-4 mt-5">
+            <!-- Nessun risultato per la tua ricerca -->
+            <h4>Fai la tua ricerca per trovare un appartamento.</h4>
+          </div>
+        </div>
 
+        <div v-else class="text-center mb-4 mt-5">
+          <!-- Mostra il messaggio "nessun risultato per la tua ricerca" -->
+          <h4>Nessun risultato per la tua ricerca...</h4>
+        </div>
 
+    <!-- AGGIUNTO /---------------------- -->
 
       <ListaApartment :apartmentsList="store.apartmentsList" />
 

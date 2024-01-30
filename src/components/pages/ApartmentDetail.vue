@@ -177,7 +177,7 @@ export default {
   },
   computed: {
     servicesToShow() {
-      return this.showAllServices ? (this.apartment.services || []) : (this.apartment.services || []).slice(0, 5);
+      return this.showAllServices ? (this.apartment.services || []) : (this.apartment.services || []).slice(0, 6);
     },
     hasMoreServices() {
       return this.showAllServices && (this.apartment.services || []).length > 5;
@@ -210,6 +210,7 @@ export default {
 
           <!-- SERVICES -->
           <div class="info-services row py-4 pe-4 border-bottom border-top w-75">
+            <h3 class="ps-2 py-3">Cosa troverai</h3>
             <span v-html="service.name" v-for="(service, index) in servicesToShow" :key="index" class="col-lg-6"></span>
 
             <div class="buttons">
@@ -308,6 +309,7 @@ export default {
         </div>
 
         <div class="row m-0">
+          <h3 class="p-0 py-3">Dove ti troverai</h3>
           <div class="map col-md-8 ms-xs-2" id="map">
             <div id="marker"></div>
           </div>
